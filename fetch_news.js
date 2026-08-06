@@ -42,5 +42,6 @@ async function fetchNews(limit = 8) {
 module.exports = { fetchNews };
 
 if (require.main === module) {
-  fetchNews().then((items) => console.log(JSON.stringify(items, null, 2)));
+  const limit = parseInt(process.argv[2], 10) || 8;
+  fetchNews(limit).then((items) => console.log(JSON.stringify(items, null, 2)));
 }

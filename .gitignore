@@ -1,3 +1,5 @@
 kakao_config.json
 github_token.txt
 node_modules/
+selected.json
+template.json
