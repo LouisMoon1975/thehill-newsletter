@@ -20,7 +20,7 @@ function escapeHtml(str) {
 
 // items: [{ title_ko, description_ko, link }] — 전체 목록을 한 메시지에 담는다 (Kakao와 달리 개수 제한 없음).
 function buildTelegramMessage(items, pageUrl) {
-  const header = `<b>📰 ${formatDateKorean()} The Hill 브리핑</b>`;
+  const header = `<b>📰 ${formatDateKorean()} The Hill Briefing</b>`;
   const lines = items.map(
     (item, i) => `${i + 1}. <a href="${item.link}">${escapeHtml(item.title_ko)}</a>\n   ${escapeHtml(item.description_ko)}`
   );

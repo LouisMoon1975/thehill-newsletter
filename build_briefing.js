@@ -29,13 +29,13 @@ function buildHtml(items, pageUrl) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${dateStr} The Hill 브리핑</title>
+<title>${dateStr} The Hill Briefing</title>
 <meta property="og:type" content="article">
-<meta property="og:title" content="${dateStr} The Hill 브리핑">
+<meta property="og:title" content="${dateStr} The Hill Briefing">
 <meta property="og:description" content="${ogDescription}">
 <meta property="og:url" content="${pageUrl}">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="${dateStr} The Hill 브리핑">
+<meta name="twitter:title" content="${dateStr} The Hill Briefing">
 <meta name="twitter:description" content="${ogDescription}">
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; background: #fafafa; color: #1a1a1a; }
@@ -53,7 +53,7 @@ function buildHtml(items, pageUrl) {
 </head>
 <body>
   <header>
-    <h1>📰 The Hill 브리핑</h1>
+    <h1>📰 The Hill Briefing</h1>
     <p>${dateStr} · thehill.com 요약</p>
   </header>
   ${rows}
@@ -72,7 +72,7 @@ function buildKakaoTemplate(items, pageUrl) {
   const top3 = items.slice(0, 3);
   return {
     object_type: "list",
-    header_title: `${formatDateKorean()} The Hill 브리핑 (전체 ${items.length}건)`,
+    header_title: `${formatDateKorean()} The Hill Briefing (전체 ${items.length}건)`,
     header_link: { web_url: pageUrl, mobile_web_url: pageUrl },
     contents: top3.map((item) => ({
       title: truncate(item.title_ko, 45),
