@@ -14,27 +14,19 @@ function formatDateKorean(date = new Date()) {
   return `${month}월 ${day}일`;
 }
 
-// items: [{ title, description, link }] — 이미 번역/요약된 한글 텍스트를 넣는다.
-function buildKoreanListTemplate(items, { maxItems = 3 } = {}) {
-  const top = items.slice(0, maxItems);
-
-  return {
-    object_type: "list",
-    header_title: `${formatDateKorean()} The Hill 주요 뉴스`,
-    header_link: {
-      web_url: "https://thehill.com",
-      mobile_web_url: "https://thehill.com",
-    },
-    contents: top.map((item) => ({
-      title: truncate(item.title, 45),
-      description: truncate(item.description, 70),
-      link: {
-        web_url: item.link,
-        mobile_web_url: item.link,
-      },
-    })),
-    button_title: "더 보기",
-  };
+function escapeHtml(str) {
+  return String(str).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 }
 
-module.exports = { buildKoreanListTemplate, truncate, formatDateKorean };
+// items: [{ title_ko, description_ko, link }] — 전체 목록을 한 메시지에 담는다 (Kakao와 달리 개수 제한 없음).
+function buildTelegramMessage(items, pageUrl) {
+  const header = `<b>📰 ${formatDateKorean()} The Hill 브리핑</b>`;
+  const lines = items.map(
+    (item, i) => `${i + 1}. <a href="${item.link}">${escapeHtml(item.title_ko)}</a>\n   ${escapeHtml(item.description_ko)}`
+  );
+  const footer = pageUrl ? `\n전체 브리핑: ${pageUrl}` : "";
+
+  return [header, "", ...lines].join("\n") + footer;
+}
+
+module.exports = { truncate, formatDateKorean, escapeHtml, buildTelegramMessage };

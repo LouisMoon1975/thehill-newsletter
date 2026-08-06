@@ -1,5 +1,7 @@
 kakao_config.json
+telegram_config.json
 github_token.txt
 node_modules/
 selected.json
 template.json
+telegram_message.txt

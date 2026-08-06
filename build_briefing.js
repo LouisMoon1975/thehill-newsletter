@@ -1,11 +1,14 @@
 const fs = require("fs");
 const path = require("path");
-const { formatDateKorean, truncate } = require("./format_newsletter.js");
+const { formatDateKorean, truncate, buildTelegramMessage } = require("./format_newsletter.js");
 
 // 입력 파일 형식 (JSON): [{ title_ko, description_ko, summary_ko, title_en, link }]
 // title_ko/description_ko: 카카오 카드용 (짧게), summary_ko: 브리핑 페이지용 (2~3문장)
-function buildHtml(items) {
+function buildHtml(items, pageUrl) {
   const dateStr = formatDateKorean();
+  const ogDescription = escapeHtml(
+    items.slice(0, 3).map((item) => item.title_ko).join(" · ")
+  );
   const rows = items
     .map(
       (item, i) => `
@@ -27,6 +30,13 @@ function buildHtml(items) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${dateStr} The Hill 브리핑</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="${dateStr} The Hill 브리핑">
+<meta property="og:description" content="${ogDescription}">
+<meta property="og:url" content="${pageUrl}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="${dateStr} The Hill 브리핑">
+<meta name="twitter:description" content="${ogDescription}">
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; background: #fafafa; color: #1a1a1a; }
   header { margin-bottom: 24px; }
@@ -85,12 +95,15 @@ function main() {
 
   const docsDir = path.join(__dirname, "docs");
   fs.mkdirSync(docsDir, { recursive: true });
-  fs.writeFileSync(path.join(docsDir, "index.html"), buildHtml(items), "utf8");
+  fs.writeFileSync(path.join(docsDir, "index.html"), buildHtml(items, pageUrl), "utf8");
 
   const template = buildKakaoTemplate(items, pageUrl);
   fs.writeFileSync(path.join(__dirname, "template.json"), JSON.stringify(template, null, 2), "utf8");
 
-  console.log("docs/index.html, template.json 생성 완료");
+  const telegramText = buildTelegramMessage(items, pageUrl);
+  fs.writeFileSync(path.join(__dirname, "telegram_message.txt"), telegramText, "utf8");
+
+  console.log("docs/index.html, template.json, telegram_message.txt 생성 완료");
 }
 
 main();
