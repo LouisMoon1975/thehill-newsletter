@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const { formatDateKorean, truncate, buildTelegramMessage } = require("./format_newsletter.js");
+const { formatDateKorean, formatDateISO, truncate, buildTelegramMessage } = require("./format_newsletter.js");
+
+const ARCHIVE_RETENTION_DAYS = 90;
 
 // 입력 파일 형식 (JSON): [{ title_ko, description_ko, summary_ko, title_en, link }]
 // title_ko/description_ko: 카카오 카드용 (짧게), summary_ko: 브리핑 페이지용 (2~3문장)
@@ -57,9 +59,61 @@ function buildHtml(items, pageUrl) {
     <p>${dateStr} · thehill.com 요약</p>
   </header>
   ${rows}
-  <footer>매일 아침 자동 업데이트</footer>
+  <footer>매일 아침 자동 업데이트 · <a href="archive/">지난 브리핑 보기</a></footer>
 </body>
 </html>`;
+}
+
+function buildArchiveIndexHtml(isoDates) {
+  const items = isoDates
+    .map((d) => `<li><a href="${d}.html">${d}</a></li>`)
+    .join("\n");
+
+  return `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hill Briefing 지난 기록</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; max-width: 480px; margin: 0 auto; padding: 24px 16px 60px; background: #fafafa; color: #1a1a1a; }
+  h1 { font-size: 20px; }
+  ul { list-style: none; padding: 0; }
+  li { background: #fff; border-radius: 10px; margin-bottom: 8px; }
+  li a { display: block; padding: 14px 16px; color: #1a1a1a; text-decoration: none; }
+  a.back { color: #3182f6; font-size: 14px; }
+</style>
+</head>
+<body>
+  <h1>📚 지난 브리핑 (최근 ${ARCHIVE_RETENTION_DAYS}일)</h1>
+  <p><a class="back" href="../">← 오늘 브리핑으로</a></p>
+  <ul>
+${items}
+  </ul>
+</body>
+</html>`;
+}
+
+function pruneAndListArchive(archiveDir, todayIso) {
+  fs.mkdirSync(archiveDir, { recursive: true });
+  const cutoff = new Date(todayIso + "T00:00:00Z");
+  cutoff.setUTCDate(cutoff.getUTCDate() - ARCHIVE_RETENTION_DAYS);
+
+  const dates = fs
+    .readdirSync(archiveDir)
+    .filter((f) => /^\d{4}-\d{2}-\d{2}\.html$/.test(f))
+    .map((f) => f.replace(".html", ""));
+
+  const kept = [];
+  for (const iso of dates) {
+    if (new Date(iso + "T00:00:00Z") < cutoff) {
+      fs.unlinkSync(path.join(archiveDir, iso + ".html"));
+    } else {
+      kept.push(iso);
+    }
+  }
+  if (!kept.includes(todayIso)) kept.push(todayIso);
+  return kept.sort().reverse();
 }
 
 function escapeHtml(str) {
@@ -94,8 +148,16 @@ function main() {
   const items = JSON.parse(fs.readFileSync(inputPath, "utf8"));
 
   const docsDir = path.join(__dirname, "docs");
+  const archiveDir = path.join(docsDir, "archive");
   fs.mkdirSync(docsDir, { recursive: true });
-  fs.writeFileSync(path.join(docsDir, "index.html"), buildHtml(items, pageUrl), "utf8");
+
+  const html = buildHtml(items, pageUrl);
+  fs.writeFileSync(path.join(docsDir, "index.html"), html, "utf8");
+
+  const todayIso = formatDateISO();
+  const keptDates = pruneAndListArchive(archiveDir, todayIso);
+  fs.writeFileSync(path.join(archiveDir, `${todayIso}.html`), html, "utf8");
+  fs.writeFileSync(path.join(archiveDir, "index.html"), buildArchiveIndexHtml(keptDates), "utf8");
 
   const template = buildKakaoTemplate(items, pageUrl);
   fs.writeFileSync(path.join(__dirname, "template.json"), JSON.stringify(template, null, 2), "utf8");
@@ -103,7 +165,7 @@ function main() {
   const telegramText = buildTelegramMessage(items, pageUrl);
   fs.writeFileSync(path.join(__dirname, "telegram_message.txt"), telegramText, "utf8");
 
-  console.log("docs/index.html, template.json, telegram_message.txt 생성 완료");
+  console.log(`docs/index.html, docs/archive/${todayIso}.html, template.json, telegram_message.txt 생성 완료 (보관 ${keptDates.length}일치)`);
 }
 
 main();
