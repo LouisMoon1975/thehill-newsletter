@@ -14,6 +14,19 @@ function formatDateKorean(date = new Date()) {
   return `${month}월 ${day}일`;
 }
 
+function formatDateKoreanFull(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  }).formatToParts(date);
+  const y = parts.find((p) => p.type === "year").value;
+  const m = parts.find((p) => p.type === "month").value;
+  const d = parts.find((p) => p.type === "day").value;
+  return `${y}년 ${m}월 ${d}일`;
+}
+
 function formatDateISO(date = new Date()) {
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Bangkok",
@@ -42,4 +55,4 @@ function buildTelegramMessage(items, pageUrl) {
   return [header, "", ...lines].join("\n") + footer;
 }
 
-module.exports = { truncate, formatDateKorean, formatDateISO, escapeHtml, buildTelegramMessage };
+module.exports = { truncate, formatDateKorean, formatDateKoreanFull, formatDateISO, escapeHtml, buildTelegramMessage };

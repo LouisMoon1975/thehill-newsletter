@@ -1,13 +1,15 @@
 const fs = require("fs");
 const path = require("path");
-const { formatDateKorean, formatDateISO, truncate, buildTelegramMessage } = require("./format_newsletter.js");
+const { formatDateKorean, formatDateKoreanFull, formatDateISO, truncate, buildTelegramMessage } = require("./format_newsletter.js");
 
 const ARCHIVE_RETENTION_DAYS = 90;
 
-// 입력 파일 형식 (JSON): [{ title_ko, description_ko, summary_ko, title_en, link }]
+// 입력 파일 형식 (JSON): [{ title_ko, description_ko, summary_ko, title_en, link, image, category }]
 // title_ko/description_ko: 카카오 카드용 (짧게), summary_ko: 브리핑 페이지용 (2~3문장)
+// image: 원문 기사 대표 이미지 URL (없으면 null), category: 매칭된 키워드 (없으면 "")
 function buildHtml(items, pageUrl) {
   const dateStr = formatDateKorean();
+  const dateFull = formatDateKoreanFull();
   const ogDescription = escapeHtml(
     items.slice(0, 3).map((item) => item.title_ko).join(" · ")
   );
@@ -17,9 +19,13 @@ function buildHtml(items, pageUrl) {
       <article class="item">
         <div class="rank">${i + 1}</div>
         <div class="body">
+          ${item.category ? `<span class="tag">${escapeHtml(item.category)}</span>` : ""}
           <h2>${escapeHtml(item.title_ko)}</h2>
-          <p class="en-title">${escapeHtml(item.title_en || "")}</p>
           <p class="summary">${escapeHtml(item.summary_ko || item.description_ko || "")}</p>
+          <div class="source-row">
+            <p class="en-title">${escapeHtml(item.title_en || "")}</p>
+            ${item.image ? `<img class="thumb" src="${item.image}" alt="" loading="lazy">` : ""}
+          </div>
           <a class="link" href="${item.link}" target="_blank" rel="noopener">원문 기사 보기 →</a>
         </div>
       </article>`
@@ -39,27 +45,71 @@ function buildHtml(items, pageUrl) {
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="${dateStr} The Hill Briefing">
 <meta name="twitter:description" content="${ogDescription}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; background: #fafafa; color: #1a1a1a; }
-  header { margin-bottom: 24px; }
-  header h1 { font-size: 22px; margin: 0 0 4px; }
-  header p { color: #666; margin: 0; font-size: 14px; }
-  .item { display: flex; gap: 12px; background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; margin: 0; background: linear-gradient(180deg, #f5f8fc 0%, #eef2f9 40%, #e3e9f5 100%); color: #1a1a1a; }
+
+  .topbar { position: relative; overflow: hidden; background: #0e2148; padding: 14px 16px; }
+  .topbar-bgimg { position: absolute; top: 0; height: 100%; object-fit: cover; opacity: 0.18; filter: grayscale(10%); transform: scale(1.7); }
+  .topbar-bgimg:nth-child(1) { left: 2%; width: 18%; transform-origin: 30% center; }
+  .topbar-bgimg:nth-child(2) { left: 41%; width: 18%; transform-origin: 50% 30%; }
+  .topbar-bgimg:nth-child(3) { left: 80%; width: 18%; transform-origin: 50% center; }
+  .topbar-inner { position: relative; z-index: 1; max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .topbar-left h1 { font-size: 22px; margin: 0 0 4px; color: #fff; }
+  .topbar-left .brand { font-family: 'Roboto Slab', Georgia, serif; font-weight: 900; letter-spacing: -0.01em; }
+  .topbar-left .briefing { font-family: 'Ebrima', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 0.85em; }
+  .topbar-left p { margin: 0; font-size: 14px; color: rgba(255,255,255,0.85); }
+  .topbar-right { text-align: right; font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.6; }
+  .topbar-right a { color: #fff; text-decoration: underline; }
+  @media (min-width: 641px) {
+    .topbar-left h1 { font-size: 25.3px; }
+  }
+
+  .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  .item { position: relative; display: flex; gap: 12px; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
   .rank { font-weight: 700; color: #999; font-size: 18px; min-width: 24px; }
+  .body { flex: 1; min-width: 0; }
   .body h2 { font-size: 17px; margin: 0 0 4px; line-height: 1.35; }
-  .en-title { font-size: 12px; color: #999; margin: 0 0 8px; }
-  .summary { font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
+  .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
+  .summary { font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
+  .source-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0; flex: 1; min-width: 0; }
+  .thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
   .link { font-size: 13px; color: #3182f6; text-decoration: none; font-weight: 500; }
-  footer { text-align: center; color: #aaa; font-size: 12px; margin-top: 24px; }
+  @media (min-width: 641px) {
+    .summary { font-size: 13px; }
+  }
+  @media (min-width: 900px) {
+    .card-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 16px; }
+    .card-row .item { flex: 0 0 23%; min-height: 430px; margin-bottom: 0; scroll-snap-align: start; }
+  }
 </style>
 </head>
 <body>
-  <header>
-    <h1>📰 The Hill Briefing</h1>
-    <p>${dateStr} · thehill.com 요약</p>
-  </header>
-  ${rows}
-  <footer>매일 아침 자동 업데이트 · <a href="archive/">지난 브리핑 보기</a></footer>
+  <div class="topbar">
+    <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/White_House.jpg" alt="">
+    <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Capitol_west_front_edit2.jpg" alt="">
+    <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wall_Street_sign.jpg" alt="">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <h1><span class="brand">The Hill.com</span> <span class="briefing">Briefing</span></h1>
+        <p>${dateFull} · thehill.com 요약</p>
+      </div>
+      <div class="topbar-right">
+        <p>매일 아침 자동 업데이트 됩니다</p>
+        <a href="archive/">지난 브리핑 보기</a>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card-row">
+    ${rows}
+    </div>
+  </div>
 </body>
 </html>`;
 }

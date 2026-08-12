@@ -26,13 +26,17 @@ async function fetchNews(limit = 8) {
 
   const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
 
-  const parsed = items.map((block) => ({
-    title: extractTag(block, "title"),
-    link: extractTag(block, "link"),
-    description: extractTag(block, "description"),
-    category: extractTag(block, "category"),
-    pubDate: extractTag(block, "pubDate"),
-  }));
+  const parsed = items.map((block) => {
+    const enclosure = block.match(/<enclosure[^>]*url="([^"]+)"[^>]*type="image\/[^"]*"/);
+    return {
+      title: extractTag(block, "title"),
+      link: extractTag(block, "link"),
+      description: extractTag(block, "description"),
+      category: extractTag(block, "category"),
+      pubDate: extractTag(block, "pubDate"),
+      image: enclosure ? enclosure[1] : null,
+    };
+  });
 
   return parsed
     .filter((item) => !/newsletter/i.test(item.category))
