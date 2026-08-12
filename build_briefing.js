@@ -74,15 +74,15 @@ function buildHtml(items, pageUrl) {
 
   .card-wrap { position: relative; margin-bottom: 26px; padding-top: 14px; }
   .rank-badge { position: absolute; top: 0; left: 16px; z-index: 1; width: 28px; height: 28px; border-radius: 50%; background: #0e2148; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-  .item { position: relative; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: box-shadow 0.25s ease; }
+  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: box-shadow 0.25s ease; }
   .item:hover { box-shadow: 0 0 0 4px rgba(43,79,216,0.18), 0 6px 24px rgba(43,79,216,0.35); }
   .item h2 {
     font-size: 13.5px; margin: 0 0 4px; line-height: 1.3;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
-  .summary { font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
-  .source-card { display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; }
+  .summary { flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
+  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; }
   .source-text { flex: 1; min-width: 0; }
   .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px; }
   .thumb { width: 66px; height: 66px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
