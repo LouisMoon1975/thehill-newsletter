@@ -22,13 +22,13 @@ function buildHtml(items, pageUrl) {
           <h2>${escapeHtml(item.title_ko)}</h2>
         </div>
         <p class="summary">${escapeHtml(item.summary_ko || item.description_ko || "")}</p>
-        <div class="source-card">
+        <a class="source-card" href="${item.link}" target="_blank" rel="noopener">
           ${item.image ? `<img class="thumb" src="${item.image}" alt="" loading="lazy">` : ""}
           <div class="source-text">
             <p class="en-title">${escapeHtml(item.title_en || "")}</p>
-            <a class="link" href="${item.link}" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            <span class="link">원문 기사 보기 →</span>
           </div>
-        </div>
+        </a>
       </article>`
     )
     .join("\n");
@@ -75,7 +75,7 @@ function buildHtml(items, pageUrl) {
   }
 
   .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-  .title-card { flex-shrink: 0; width: 100%; height: 64px; box-sizing: border-box; background: #f4f6fb; border-radius: 6px; padding: 10px 12px; margin-bottom: 16px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .title-card { flex-shrink: 0; width: 100%; height: 64px; box-sizing: border-box; background: #f4f6fb; border-radius: 6px; padding: 10px 12px; margin-bottom: 22px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
   .item h2 {
     font-size: 13.5px; margin: 0; line-height: 1.3;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -85,7 +85,7 @@ function buildHtml(items, pageUrl) {
     flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px;
   }
-  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 100%; height: 84px; box-sizing: border-box; overflow: hidden; }
+  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 100%; height: 84px; box-sizing: border-box; overflow: hidden; text-decoration: none; color: inherit; cursor: pointer; }
   .source-text { flex: 1; min-width: 0; }
   .en-title {
     font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px;
@@ -106,17 +106,20 @@ function buildHtml(items, pageUrl) {
     .card-row .item {
       height: 367px; margin-bottom: 0; padding: 10px;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .card-row .item:hover {
-      transform: perspective(800px) translateZ(12px) scale(1.04);
-      box-shadow: 0 13px 26px rgba(0,0,0,0.2);
+      transform: perspective(800px) translateZ(10px) scale(1.032);
+      box-shadow: 0 10px 21px rgba(0,0,0,0.16);
       z-index: 2;
     }
     .card-row .summary {
-      font-size: 11.5px; line-height: 1.4; margin-bottom: 6px;
-      display: -webkit-box; -webkit-line-clamp: 10; -webkit-box-orient: vertical; overflow: hidden;
+      font-size: 12.5px; line-height: 1.4; margin-bottom: 6px;
+      display: -webkit-box; -webkit-line-clamp: 11; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .card-row .title-card { height: 56px; margin-bottom: 10px; }
+    .card-row .title-card { height: 56px; margin-bottom: 16px; }
     .card-row .source-card { height: 60px; padding: 6px; gap: 6px; }
     .card-row .thumb { width: 44px; height: 44px; }
     .card-row .en-title { font-size: 10.5px; -webkit-line-clamp: 2; }
