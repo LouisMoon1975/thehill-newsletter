@@ -17,10 +17,11 @@ function buildHtml(items, pageUrl) {
     .map(
       (item, i) => `
       <article class="item">
-        ${item.category ? `<span class="tag">${escapeHtml(item.category)}</span>` : ""}
-        <h2>${escapeHtml(item.title_ko)}</h2>
+        <div class="title-card">
+          ${item.category ? `<span class="tag">${escapeHtml(item.category)}</span>` : ""}
+          <h2>${escapeHtml(item.title_ko)}</h2>
+        </div>
         <p class="summary">${escapeHtml(item.summary_ko || item.description_ko || "")}</p>
-        <p class="rank-label">${i + 1}</p>
         <div class="source-card">
           ${item.image ? `<img class="thumb" src="${item.image}" alt="" loading="lazy">` : ""}
           <div class="source-text">
@@ -72,14 +73,14 @@ function buildHtml(items, pageUrl) {
 
   .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .item:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.15); }
+  .title-card { flex-shrink: 0; width: 100%; height: 55px; box-sizing: border-box; background: #f4f6fb; border-radius: 6px; padding: 8px 10px; margin-bottom: 10px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
   .item h2 {
-    font-size: 13.5px; margin: 0 0 10px; line-height: 1.3;
+    font-size: 13.5px; margin: 0; line-height: 1.3;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
   .summary { flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
-  .rank-label { flex-shrink: 0; margin: 0 0 4px; color: #0e2148; font-weight: 700; font-size: 14px; }
-  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 260px; height: 84px; overflow: hidden; }
+  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 100%; height: 84px; box-sizing: border-box; overflow: hidden; }
   .source-text { flex: 1; min-width: 0; }
   .en-title {
     font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px;
