@@ -36,19 +36,21 @@
 
   .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
 
-  .card-wrap { position: relative; margin-bottom: 26px; padding-top: 14px; }
-  .rank-badge { position: absolute; top: 0; left: 16px; z-index: 1; width: 28px; height: 28px; border-radius: 50%; background: #0e2148; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .item:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.15); }
   .item h2 {
-    font-size: 13.5px; margin: 0 0 4px; line-height: 1.3;
+    font-size: 13.5px; margin: 0 0 10px; line-height: 1.3;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
   .summary { flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
-  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; }
+  .rank-label { flex-shrink: 0; margin: 0 0 4px; color: #0e2148; font-weight: 700; font-size: 14px; }
+  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 260px; height: 84px; overflow: hidden; }
   .source-text { flex: 1; min-width: 0; }
-  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px; }
+  .en-title {
+    font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
   .thumb { width: 66px; height: 66px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
   .link { font-size: 13px; color: #3182f6; text-decoration: none; font-weight: 500; }
   @media (min-width: 641px) {
@@ -56,8 +58,7 @@
   }
   @media (min-width: 900px) {
     .card-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 16px; }
-    .card-row .card-wrap { flex: 0 0 23%; margin-bottom: 0; scroll-snap-align: start; }
-    .card-row .item { min-height: 645px; }
+    .card-row .item { flex: 0 0 23%; min-height: 645px; margin-bottom: 0; scroll-snap-align: start; }
   }
 </style>
 </head>
@@ -80,165 +81,145 @@
   <div class="content">
     <div class="card-row">
     
-      <div class="card-wrap">
-        <div class="rank-badge">1</div>
-        <article class="item">
-          <span class="tag">트럼프</span>
-          <h2>연방판사, 트럼프 우편투표 제한 재차 저지</h2>
-          <p class="summary">연방법원이 트럼프 대통령의 우편투표 제한 행정명령에 대해 미 우정공사(USPS)의 집행을 다시 금지했다. 이번 명령을 내린 인디라 탈와니 연방판사는 매사추세츠 지방법원 소속으로, 지난 6월에도 동일한 행정명령이 법적 효력을 갖지 않는다고 판결한 바 있다. 문제의 행정명령은 우편투표 용지를 발급받을 수 있는 유권자 명단을 각 주 정부가 연방정부에 제출한 경우에만 USPS가 우편투표를 지원하도록 제한하는 내용을 담고 있었다. 행정부는 이 조치가 선거 부정 방지를 위한 것이라고 주장해왔지만, 시민단체와 다수 주 정부는 이를 사실상 우편투표 접근성을 제한하려는 시도로 규정하며 반발해왔다. 탈와니 판사는 이번 재판결에서도 해당 명령이 연방법이 부여한 USPS의 독립적 운영 권한을 침해한다고 지적했다. 소송을 제기한 원고 측에는 여러 주 정부와 투표권 옹호단체들이 포함돼 있으며, 이들은 우편투표가 고령층과 장애인, 해외 거주 미국인 등 취약계층의 핵심 투표 수단이라고 강조해왔다. 백악관은 이번 판결에 대해 항소할 가능성을 시사했으며, 법무부도 관련 대응 방안을 검토 중인 것으로 알려졌다. 이번 사건은 11월 중간선거를 앞두고 우편투표 제도를 둘러싼 여야 간 공방이 격화되는 가운데 나온 것으로, 향후 항소심 결과에 따라 전국적인 우편투표 운영 방식에 영향을 미칠 수 있다. 전문가들은 항소가 진행되더라도 선거가 임박한 시점에서 법원이 신속한 판단을 내릴 가능성이 높다고 보고 있다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/AP26007110688760-e1783181616369_743d7f.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Federal judge reinforces block against Trump mail-in voting restrictions</p>
-              <a class="link" href="https://thehill.com/regulation/court-battles/6023907-judge-blocks-usps-trump-voter-order/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">트럼프</span>
+        <h2>연방판사, 트럼프 우편투표 제한 재차 저지</h2>
+        <p class="summary">연방법원이 트럼프 대통령의 우편투표 제한 행정명령에 대해 미 우정공사(USPS)의 집행을 다시 금지했다. 인디라 탈와니 연방판사는 지난 6월에도 동일한 명령이 법적 효력을 갖지 않는다고 판결한 바 있다. 문제의 행정명령은 우편투표 용지 발급을 주정부의 유권자 명단 제출과 연계하는 내용을 담고 있었다. 행정부는 선거 부정 방지를 명분으로 내세웠지만, 시민단체와 다수 주 정부는 이를 우편투표 접근성 제한 시도로 규정하며 반발해왔다. 탈와니 판사는 이번에도 해당 명령이 USPS의 독립적 운영 권한을 침해한다고 지적했다. 백악관은 항소 가능성을 시사했으며, 이번 사건은 11월 중간선거를 앞두고 우편투표 제도를 둘러싼 공방이 격화되는 가운데 나왔다.</p>
+        <p class="rank-label">1</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/AP26007110688760-e1783181616369_743d7f.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Federal judge reinforces block against Trump mail-in voting restrictions</p>
+            <a class="link" href="https://thehill.com/regulation/court-battles/6023907-judge-blocks-usps-trump-voter-order/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">2</div>
-        <article class="item">
-          <span class="tag">트럼프</span>
-          <h2>트럼프 &quot;중간선거 비상사태 선포 가능성 열어둬&quot;</h2>
-          <p class="summary">트럼프 대통령이 11월 중간선거를 앞두고 국가안보 비상사태를 선포해 연방정부가 선거 운영에 개입할 가능성을 열어뒀다. 이 발언은 보수 논객 웨인 루트와의 인터뷰에서 나온 것으로, 루트는 상원이 유권자 자격 검증법(SAVE법)을 통과시키지 않을 경우 대통령이 비상대권을 발동할 수 있는지 물었다. 트럼프는 이에 대해 &quot;이상한 일들이 일어나긴 했다&quot;며 즉답을 피하면서도 가능성을 완전히 부인하지 않았다. SAVE법은 유권자 등록 시 시민권 증빙 서류 제출을 의무화하는 내용을 담고 있으며, 공화당은 이를 선거 부정 방지책으로 추진해왔다. 반면 민주당과 다수 시민단체는 이 법안이 저소득층과 소수자 유권자의 투표 접근성을 크게 낮출 것이라며 강하게 반대하고 있다. 국가안보 비상사태 선포를 통한 선거 개입은 전례가 거의 없는 조치로, 헌법학자들 사이에서도 대통령의 그러한 권한 행사가 합법적인지에 대해 의견이 엇갈린다. 민주당 지도부는 즉각 이 발언을 &quot;권위주의적 위협&quot;이라 규정하며 강력히 반발했고, 일부 의원은 관련 청문회 개최를 요구하고 나섰다. 백악관 대변인은 이후 브리핑에서 대통령의 발언이 &quot;가정적 상황에 대한 답변일 뿐&quot;이라며 확대 해석을 경계했다. 이번 발언은 중간선거를 3개월가량 앞둔 시점에서 선거 관리 권한을 둘러싼 정치적 긴장이 한층 고조되고 있음을 보여준다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26222723321656-e1786458254866.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Trump on declaring national security emergency for elections: &#39;Stranger things have happened&#39;</p>
-              <a class="link" href="https://thehill.com/homenews/administration/6023743-trump-national-emergency-midterms/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">트럼프</span>
+        <h2>트럼프 &quot;중간선거 비상사태 선포 가능성 열어둬&quot;</h2>
+        <p class="summary">트럼프 대통령이 11월 중간선거를 앞두고 국가안보 비상사태를 선포해 선거 운영에 개입할 가능성을 열어뒀다. 보수 논객 웨인 루트와의 인터뷰에서, 상원이 유권자 자격 검증법(SAVE법)을 통과시키지 않을 경우를 전제로 나온 발언이다. 트럼프는 &quot;이상한 일들이 일어나긴 했다&quot;며 가능성을 완전히 부인하지 않았다. SAVE법은 유권자 등록 시 시민권 증빙을 의무화하는 내용으로, 공화당은 부정 방지책이라 주장하지만 민주당은 투표 접근성 제한이라며 반대한다. 민주당 지도부는 이 발언을 &quot;권위주의적 위협&quot;이라 규정하며 강력 반발했고, 백악관은 확대 해석을 경계했다. 이번 발언은 선거 관리 권한을 둘러싼 정치적 긴장이 고조되고 있음을 보여준다.</p>
+        <p class="rank-label">2</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26222723321656-e1786458254866.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Trump on declaring national security emergency for elections: &#39;Stranger things have happened&#39;</p>
+            <a class="link" href="https://thehill.com/homenews/administration/6023743-trump-national-emergency-midterms/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">3</div>
-        <article class="item">
-          <span class="tag">트럼프</span>
-          <h2>속보: 사우스캐롤라이나·위스콘신 등 경선일</h2>
-          <p class="summary">화요일 위스콘신, 미네소타, 코네티컷, 버몬트 등 여러 주에서 주목받는 예비경선이 동시에 치러졌다. 앨라배마에서도 하원의원 경선이 함께 진행되며 전국적으로 중간선거를 앞둔 정치 지형 재편의 신호탄이 됐다. 특히 사우스캐롤라이나에서는 지난 7월 재임 중 갑작스럽게 별세한 린지 그레이엄 상원의원의 후임을 뽑는 공화당 특별경선이 큰 관심을 끌었다. 이 경선에는 그레이엄 의원의 여동생인 달린 그레이엄 상원의원을 포함해 총 10명의 후보가 출마해 치열한 경쟁을 벌였다. 위스콘신과 미네소타에서는 진보 성향 후보와 중도 성향 후보 간의 대결 구도가 형성되며 민주당 내부의 노선 갈등이 다시 부각됐다. 코네티컷 주지사 경선에서도 현직 네드 라몬트 지사에 대한 진보 진영의 도전이 이어지며 당내 세대·노선 교체 요구가 표면화됐다. 이번 경선 결과는 11월 중간선거에서 각 당의 최종 후보 구도를 결정짓는 중요한 분수령으로 평가된다. 정치 분석가들은 이번 경선에서 나타난 유권자들의 표심이 향후 상하원 다수당 판도를 가늠하는 척도가 될 것으로 보고 있다. 개표는 자정을 넘겨서까지 이어졌으며, 일부 접전 지역구는 결과 확정까지 며칠이 더 걸릴 수 있다는 전망도 나온다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/WisconsinMinnesota_Mueller_AP_NamYHuh.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Live updates: South Carolina, Wisconsin, more hold key primaries</p>
-              <a class="link" href="https://thehill.com/homenews/administration/6021632-live-updates-trump-iran-primary-elections-south-carolina-wisconsin-minnesota/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">트럼프</span>
+        <h2>속보: 사우스캐롤라이나·위스콘신 등 경선일</h2>
+        <p class="summary">화요일 위스콘신, 미네소타, 코네티컷, 버몬트 등에서 주목받는 예비경선이 동시에 치러졌고 앨라배마 하원 경선도 함께 진행됐다. 사우스캐롤라이나에서는 지난 7월 별세한 린지 그레이엄 상원의원의 후임을 뽑는 공화당 특별경선이 큰 관심을 끌었다. 이 경선에는 그레이엄의 여동생 달린 그레이엄 상원의원을 포함해 총 10명이 출마했다. 위스콘신·미네소타에서는 진보와 중도 후보 간 대결 구도가 형성됐고, 코네티컷에서도 현직 라몬트 지사에 대한 진보 진영의 도전이 이어졌다. 이번 경선 결과는 11월 중간선거의 최종 후보 구도를 가르는 분수령으로 평가된다. 개표는 자정을 넘겨서까지 이어졌다.</p>
+        <p class="rank-label">3</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/WisconsinMinnesota_Mueller_AP_NamYHuh.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Live updates: South Carolina, Wisconsin, more hold key primaries</p>
+            <a class="link" href="https://thehill.com/homenews/administration/6021632-live-updates-trump-iran-primary-elections-south-carolina-wisconsin-minnesota/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">4</div>
-        <article class="item">
-          <span class="tag">트럼프</span>
-          <h2>트럼프 정부, 미성년 트랜스젠더 의료 메디케이드 지원 제한</h2>
-          <p class="summary">트럼프 행정부가 미성년자 대상 트랜스젠더 의료에 대한 연방 메디케이드 지원을 전면 차단하는 최종 규칙을 발표했다. 메디케어·메디케이드서비스센터(CMS)가 마련한 이번 규칙은 성전환 관련 시술뿐 아니라 아동건강보험프로그램(CHIP) 재원 사용까지 함께 금지했다. 행정부는 이번 조치가 아직 의학적 판단 능력이 충분하지 않은 미성년자를 비가역적 의료 개입으로부터 보호하기 위한 것이라고 설명했다. 반면 소아과학회를 비롯한 다수 의료단체는 관련 치료가 엄격한 의학적 기준과 부모 동의 하에 이뤄져 왔다며 이번 결정에 강하게 반발했다. LGBTQ 인권단체들은 이번 규칙이 저소득층 트랜스젠더 청소년의 의료 접근권을 사실상 박탈하는 조치라며 즉각 소송을 예고했다. 이미 일부 주에서는 유사한 규제를 시행 중이었지만, 이번 연방 차원의 조치는 전국적으로 훨씬 광범위한 영향을 미칠 것으로 예상된다. 민주당 성향 주지사들은 주정부 예산을 활용해서라도 관련 의료 서비스를 유지하겠다는 입장을 밝히고 나섰다. 이번 결정은 트럼프 행정부가 추진해온 일련의 트랜스젠더 관련 정책 기조의 연장선으로, 앞서 군 복무 제한, 스포츠 참가 제한 등의 조치와 궤를 같이한다. 법적 다툼이 본격화될 경우 최종 판단은 연방대법원까지 이어질 가능성도 제기된다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/Zoom-In-Oz_070826_AP_Mark-Schiefelbein.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Trump administration finalizes rule restricting trans healthcare for minors on Medicaid</p>
-              <a class="link" href="https://thehill.com/policy/healthcare/6023489-cms-blocks-minor-gender-care/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">트럼프</span>
+        <h2>트럼프 정부, 미성년 트랜스젠더 의료 메디케이드 지원 제한</h2>
+        <p class="summary">트럼프 행정부가 미성년자 대상 트랜스젠더 의료에 대한 연방 메디케이드 지원을 전면 차단하는 최종 규칙을 발표했다. CMS가 마련한 규칙은 성전환 관련 시술뿐 아니라 아동건강보험프로그램(CHIP) 재원 사용까지 함께 금지했다. 행정부는 미성년자를 비가역적 의료 개입으로부터 보호하기 위한 조치라고 설명했다. 반면 소아과학회 등 의료단체는 해당 치료가 엄격한 기준과 부모 동의 하에 이뤄져 왔다며 반발했고, LGBTQ 단체는 즉각 소송을 예고했다. 이번 조치는 군 복무·스포츠 참가 제한 등 행정부의 기존 트랜스젠더 정책 기조의 연장선이다. 법적 다툼이 본격화되면 연방대법원까지 이어질 가능성도 제기된다.</p>
+        <p class="rank-label">4</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/Zoom-In-Oz_070826_AP_Mark-Schiefelbein.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Trump administration finalizes rule restricting trans healthcare for minors on Medicaid</p>
+            <a class="link" href="https://thehill.com/policy/healthcare/6023489-cms-blocks-minor-gender-care/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">5</div>
-        <article class="item">
-          <span class="tag">중간선거</span>
-          <h2>카알, 앨라배마 하원 경선 승리...의회 복귀 유력</h2>
-          <p class="summary">제리 카알 전 하원의원이 앨라배마 1선거구 공화당 경선에서 승리하며 의회 복귀가 유력해졌다. 이번 경선은 은퇴를 선언한 배리 무어 하원의원의 지역구를 두고 치러졌으며, 카알은 다른 공화당 후보 3명을 제치고 결선 없이 승리를 확정지었다. 카알은 2021년부터 2025년까지 같은 지역구를 대표했으나 지난 선거에서 낙선한 뒤 재도전에 나섰다. 그는 선거 기간 내내 감세 정책과 국경 안보 강화를 핵심 공약으로 내세우며 보수 유권자층의 지지를 확보했다. 해당 지역구는 전통적인 공화당 강세 지역으로, 카알의 본선 승리 가능성이 매우 높은 것으로 평가된다. 이번 승리는 낙선 이후 정계에 복귀하려는 전직 의원들의 재기 흐름과도 맞물려 주목받고 있다. 무어 의원은 카알에 대한 공개 지지를 표명하지 않았으나, 당내 여러 인사들이 선거 막판 카알 지지를 선언하며 힘을 실었다. 카알의 승리로 앨라배마 공화당 하원의원단의 세대교체 논의는 다시 원점으로 돌아가게 됐다는 평가도 나온다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2024/09/carljerry_092624gn01_w.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Jerry Carl on track to return to Congress after Alabama House primary win for Moore seat</p>
-              <a class="link" href="https://thehill.com/homenews/campaign/6006760-carl-alabama-house-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">중간선거</span>
+        <h2>카알, 앨라배마 하원 경선 승리...의회 복귀 유력</h2>
+        <p class="summary">제리 카알 전 하원의원이 앨라배마 1선거구 공화당 경선에서 승리하며 의회 복귀가 유력해졌다. 은퇴하는 배리 무어 의원의 지역구를 두고 다른 후보 3명을 결선 없이 제쳤다. 카알은 2021~2025년 같은 지역구를 대표했으나 지난 선거에서 낙선한 뒤 재도전에 나섰다. 그는 감세와 국경 안보 강화를 핵심 공약으로 내세워 보수 유권자층의 지지를 얻었다. 해당 지역구는 공화당 강세 지역이라 본선 승리 가능성이 매우 높다는 평가다. 이번 승리는 낙선 후 재기하려는 전직 의원들의 흐름과도 맞물려 주목받고 있다.</p>
+        <p class="rank-label">5</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2024/09/carljerry_092624gn01_w.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Jerry Carl on track to return to Congress after Alabama House primary win for Moore seat</p>
+            <a class="link" href="https://thehill.com/homenews/campaign/6006760-carl-alabama-house-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">6</div>
-        <article class="item">
-          <span class="tag">중간선거</span>
-          <h2>사우스캐롤라이나 상원 경선, 결선투표로</h2>
-          <p class="summary">고 린지 그레이엄 상원의원의 후임을 뽑는 사우스캐롤라이나 공화당 경선이 오는 8월 25일 결선투표로 이어지게 됐다. 1차 투표에서 어느 후보도 과반 득표에 이르지 못하면서, 달린 그레이엄 상원의원과 랠프 노먼 하원의원 두 사람이 결선에 진출했다. 달린 그레이엄은 오빠인 린지 그레이엄 의원의 별세 이후 잔여 임기를 채우기 위해 임명직으로 상원에 입성한 인물이다. 랠프 노먼 하원의원은 강경 보수 성향으로 잘 알려져 있으며, 트럼프 대통령과 가까운 관계를 내세우며 지지를 호소해왔다. 두 후보는 정책 노선에서 뚜렷한 차이를 보이는데, 그레이엄은 상대적으로 온건한 외교·안보 노선을 이어받을 것이라는 평가를 받는 반면 노먼은 강경 보수 의제를 전면에 내세우고 있다. 그레이엄 전 의원은 지난 7월 재임 도중 갑작스럽게 별세해 정치권에 큰 충격을 안겼으며, 그의 뒤를 누가 잇느냐를 두고 주 정치권의 관심이 집중돼 있다. 결선투표까지 약 2주간 양측 진영은 총력전을 예고하고 있으며, 전국 공화당 지도부의 지지 향배도 변수로 떠오르고 있다. 이번 결과는 11월 본선에서 공화당의 상원 의석 수성 전략에도 직접적인 영향을 미칠 전망이다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/Norman_Graham_Split.png?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Graham, Norman advance to runoff in South Carolina GOP primary for Senate</p>
-              <a class="link" href="https://thehill.com/homenews/campaign/6022968-graham-norman-south-carolina-gop-senate-primary-runoff/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">중간선거</span>
+        <h2>사우스캐롤라이나 상원 경선, 결선투표로</h2>
+        <p class="summary">고 린지 그레이엄 상원의원의 후임을 뽑는 사우스캐롤라이나 공화당 경선이 8월 25일 결선투표로 이어지게 됐다. 1차 투표에서 과반 득표자가 없어 달린 그레이엄 상원의원과 랠프 노먼 하원의원이 결선에 진출했다. 달린 그레이엄은 오빠의 별세 이후 잔여 임기를 채우기 위해 임명직으로 상원에 입성한 인물이다. 노먼 의원은 강경 보수 성향으로, 트럼프 대통령과의 친분을 앞세워 지지를 호소해왔다. 그레이엄은 온건한 외교·안보 노선을, 노먼은 강경 보수 의제를 각각 내세우며 뚜렷한 대비를 이루고 있다. 이번 결과는 공화당의 상원 의석 수성 전략에도 직접 영향을 미칠 전망이다.</p>
+        <p class="rank-label">6</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/Norman_Graham_Split.png?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Graham, Norman advance to runoff in South Carolina GOP primary for Senate</p>
+            <a class="link" href="https://thehill.com/homenews/campaign/6022968-graham-norman-south-carolina-gop-senate-primary-runoff/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">7</div>
-        <article class="item">
-          <span class="tag">중간선거</span>
-          <h2>라몬트, 코네티컷 주지사 경선서 진보 진영 눌러</h2>
-          <p class="summary">네드 라몬트 코네티컷 주지사가 민주당 경선에서 진보 성향 도전자를 누르고 3선 도전의 발판을 마련했다. 라몬트는 조시 엘리엇 주하원의원을 꺾었으며, 본선에서는 라이언 파지오 공화당 주상원의원과 맞붙게 됐다. 엘리엇 의원은 최저임금 인상과 부유세 도입 등을 내세우며 당내 진보 진영의 지지를 결집시켰으나 현직 프리미엄을 넘지는 못했다. 이번 경선은 지난 50년 만에 처음으로 현직 주지사에게 당내 도전자가 나선 사례로 기록되며 큰 주목을 받았다. 라몬트는 안정적인 주 재정 운영과 경제 성과를 앞세워 중도 성향 유권자와 노동조합의 지지를 확보한 것으로 분석된다. 코네티컷은 전통적으로 민주당 강세 지역이지만, 최근 생활비 상승에 대한 유권자들의 불만이 커지면서 본선 구도도 예년보다 치열해질 것이라는 전망이 나온다. 파지오 후보는 감세와 규제 완화를 핵심 공약으로 내세우며 본선 경쟁력을 강조하고 있다. 정치 전문가들은 이번 결과가 전국적인 민주당 내 중도-진보 노선 갈등의 축소판이라고 평가하고 있다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26206677929229-e1786385164685.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Lamont wards off progressive challenge to face Fazio in Connecticut governor&#39;s election</p>
-              <a class="link" href="https://thehill.com/homenews/campaign/6020877-lamont-wins-connecticut-governor-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">중간선거</span>
+        <h2>라몬트, 코네티컷 주지사 경선서 진보 진영 눌러</h2>
+        <p class="summary">네드 라몬트 코네티컷 주지사가 민주당 경선에서 진보 성향 도전자 조시 엘리엇 주하원의원을 꺾고 3선 도전의 발판을 마련했다. 본선에서는 라이언 파지오 공화당 주상원의원과 맞붙는다. 엘리엇은 최저임금 인상과 부유세 도입을 내세워 진보 진영 지지를 결집시켰으나 현직 프리미엄을 넘지 못했다. 이번 경선은 50년 만에 처음으로 현직 주지사에게 당내 도전자가 나선 사례로 기록됐다. 라몬트는 안정적 재정 운영과 경제 성과를 앞세워 중도층과 노동조합의 지지를 확보한 것으로 분석된다. 생활비 상승에 대한 불만으로 본선 구도도 예년보다 치열해질 전망이다.</p>
+        <p class="rank-label">7</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26206677929229-e1786385164685.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Lamont wards off progressive challenge to face Fazio in Connecticut governor&#39;s election</p>
+            <a class="link" href="https://thehill.com/homenews/campaign/6020877-lamont-wins-connecticut-governor-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">8</div>
-        <article class="item">
-          <span class="tag">중간선거</span>
-          <h2>달린 그레이엄, 혼전 속 공화 경선 선두</h2>
-          <p class="summary">사우스캐롤라이나 유권자들이 고 린지 그레이엄 상원의원의 후임을 뽑는 특별경선에 참여한 가운데, 여동생인 달린 그레이엄 상원의원이 혼전 속에서도 선두를 달리고 있다. 달린 그레이엄은 오빠의 별세 직후 잔여 임기를 채우기 위해 주지사에 의해 임명됐으며, 이번 경선을 통해 정식으로 유권자 심판을 받게 됐다. 10명에 달하는 후보가 난립한 이번 경선에서 그는 오빠의 정치적 유산과 지역 내 인지도를 앞세워 초반 우세를 지켜가고 있다는 평가다. 다만 과반 득표 확보에는 실패할 가능성이 높아, 결국 랠프 노먼 하원의원과의 결선투표로 이어지게 됐다. 그레이엄 가문에 대한 지역 유권자들의 동정 여론이 이번 선거전에 상당한 영향을 미치고 있다는 분석도 나온다. 동시에 강경 보수 유권자층 사이에서는 보다 트럼프 친화적인 후보를 원하는 목소리도 만만치 않아, 노먼 의원과의 결선이 실질적인 승부처가 될 전망이다. 개표 상황실에서는 자정이 넘도록 표차가 좁혀지는 접전이 이어졌으며, 최종 순위 확정까지 시간이 더 필요한 상황이다. 이번 특별경선 결과는 공화당의 상원 의석 수성 전략과 그레이엄 가문의 정치적 미래를 동시에 가늠할 시금석으로 평가된다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26213705695335-e1785839936187.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Live results: Darline Graham advances from crowded GOP field for late brother&#39;s Senate seat</p>
-              <a class="link" href="https://thehill.com/homenews/campaign/6018905-live-results-south-carolina-senate-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        <span class="tag">중간선거</span>
+        <h2>달린 그레이엄, 혼전 속 공화 경선 선두</h2>
+        <p class="summary">사우스캐롤라이나에서 고 린지 그레이엄 상원의원의 후임을 뽑는 특별경선이 치러진 가운데, 여동생 달린 그레이엄 상원의원이 혼전 속에서도 선두를 달리고 있다. 그는 오빠의 별세 직후 잔여 임기를 채우기 위해 임명됐고, 이번 경선으로 정식 유권자 심판을 받게 됐다. 10명이 난립한 경선에서 오빠의 정치적 유산과 지역 인지도를 앞세워 초반 우세를 지켜가고 있다는 평가다. 다만 과반 득표에는 실패해 랠프 노먼 하원의원과의 결선투표로 이어지게 됐다. 그레이엄 가문에 대한 동정 여론이 선거전에 영향을 미치고 있다는 분석도 나온다. 개표는 자정 넘도록 접전이 이어졌다.</p>
+        <p class="rank-label">8</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26213705695335-e1785839936187.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Live results: Darline Graham advances from crowded GOP field for late brother&#39;s Senate seat</p>
+            <a class="link" href="https://thehill.com/homenews/campaign/6018905-live-results-south-carolina-senate-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">9</div>
-        <article class="item">
-          
-          <h2>국방부 &quot;예멘 공습으로 민간인 153명 사망&quot;</h2>
-          <p class="summary">국방부가 지난해 예멘 후티 반군을 겨냥한 미군 공습으로 민간인 153명이 사망하고 243명이 부상했다고 의회에 공식 보고했다. 이 사상자 집계는 홍해를 지나는 상선에 대한 후티 반군의 공격이 잇따르자 트럼프 대통령이 지난 3월 승인한 일련의 공습 작전에 따른 결과다. 국방부는 이번 보고서에서 공습이 군사 표적을 정밀 타격하는 것을 목표로 했으나 예상보다 많은 민간인 피해가 발생했다고 인정했다. 인권단체들은 민간인 피해 규모가 당초 정부 발표보다 훨씬 크다며, 독립적인 조사와 피해 보상이 필요하다고 촉구하고 있다. 일부 의원들은 이번 보고를 계기로 행정부가 의회 승인 없이 진행해온 군사작전의 법적 근거를 재검토해야 한다고 주장하고 나섰다. 예멘 내전은 다년간 지속되며 이미 심각한 인도적 위기를 초래해왔으며, 이번 공습으로 민간인 피해가 추가되며 국제사회의 우려도 커지고 있다. 국방부는 향후 유사한 민간인 피해를 줄이기 위해 표적 선정 절차를 개선하겠다고 밝혔지만, 구체적인 시행 계획은 아직 공개되지 않았다. 이번 사안은 향후 의회 청문회에서 행정부의 군사작전 투명성과 책임성을 둘러싼 논쟁으로 이어질 가능성이 크다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/leading_pentagon_081526_ap_alex-brandon-e1786359419742.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Pentagon tells Congress US military airstrikes in Yemen resulted in 153 civilians killed</p>
-              <a class="link" href="https://thehill.com/policy/defense/6023883-pentagon-report-yemen-civilian-casualties/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        
+        <h2>국방부 &quot;예멘 공습으로 민간인 153명 사망&quot;</h2>
+        <p class="summary">국방부가 지난해 예멘 후티 반군을 겨냥한 미군 공습으로 민간인 153명이 사망하고 243명이 부상했다고 의회에 보고했다. 홍해 상선 공격이 잇따르자 트럼프 대통령이 지난 3월 승인한 공습 작전에 따른 결과다. 국방부는 정밀 타격을 목표로 했으나 예상보다 많은 민간인 피해가 발생했다고 인정했다. 인권단체들은 실제 피해 규모가 정부 발표보다 클 것이라며 독립적인 조사와 보상을 촉구하고 있다. 일부 의원들은 의회 승인 없이 진행된 군사작전의 법적 근거를 재검토해야 한다고 주장했다. 이번 사안은 향후 청문회에서 행정부의 군사작전 투명성 논쟁으로 이어질 가능성이 크다.</p>
+        <p class="rank-label">9</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/leading_pentagon_081526_ap_alex-brandon-e1786359419742.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Pentagon tells Congress US military airstrikes in Yemen resulted in 153 civilians killed</p>
+            <a class="link" href="https://thehill.com/policy/defense/6023883-pentagon-report-yemen-civilian-casualties/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
 
-      <div class="card-wrap">
-        <div class="rank-badge">10</div>
-        <article class="item">
-          
-          <h2>美 여성 580만명, 산전관리 사각지대 거주</h2>
-          <p class="summary">마치오브다임스가 발표한 최신 보고서에 따르면 미국 여성 580만 명이 충분한 산전관리를 받을 수 없는 지역에 거주하고 있는 것으로 나타났다. 보고서는 전체 카운티의 3분의 1이 병원이나 분만센터가 아예 없는 이른바 &#39;출산 사막&#39; 지역으로 분류된다고 밝혔다. 이 단체는 프랭클린 루스벨트 전 대통령이 소아마비 퇴치를 목표로 설립한 유서 깊은 비영리기구로, 현재는 모성·영아 건강 증진 활동에 주력하고 있다. 보고서는 특히 농촌 지역과 저소득층 밀집 지역에서 산부인과 의료진 부족 문제가 심각하다고 지적했다. 산전관리 부족은 조산, 임신 합병증, 산모 사망률 증가 등과 직접적으로 연관되는 것으로 알려져 있어 공중보건상 심각한 문제로 꼽힌다. 보고서는 여러 농촌 병원의 분만실 폐쇄가 최근 몇 년간 가속화되면서 상황이 더욱 악화되고 있다고 분석했다. 전문가들은 원격의료 확대와 조산사 인력 양성 지원 등이 단기적 해법이 될 수 있다고 제안하고 있다. 마치오브다임스는 연방 및 주 정부에 산부인과 의료 인프라 투자를 확대할 것을 촉구하며, 관련 법안 통과를 위한 캠페인을 이어갈 계획이라고 밝혔다.</p>
-          <div class="source-card">
-            <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/black_maternal_health_morbidity_12172021_AP23193634509227-1.jpg?w=900" alt="" loading="lazy">
-            <div class="source-text">
-              <p class="en-title">Millions of Americans lack adequate access to prenatal care: Report</p>
-              <a class="link" href="https://thehill.com/policy/healthcare/6023785-march-dimes-maternity-deserts/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        
+        <h2>美 여성 580만명, 산전관리 사각지대 거주</h2>
+        <p class="summary">마치오브다임스 최신 보고서에 따르면 미국 여성 580만 명이 충분한 산전관리를 받을 수 없는 지역에 거주하고 있다. 전체 카운티의 3분의 1이 병원이나 분만센터가 없는 &#39;출산 사막&#39;으로 분류됐다. 이 단체는 프랭클린 루스벨트 전 대통령이 설립한 유서 깊은 비영리기구로, 현재 모성·영아 건강 증진 활동에 주력한다. 보고서는 농촌 지역과 저소득층 밀집 지역의 산부인과 의료진 부족 문제가 특히 심각하다고 지적했다. 산전관리 부족은 조산과 산모 사망률 증가로 직결되는 공중보건 문제로 꼽힌다. 마치오브다임스는 연방·주 정부에 산부인과 인프라 투자 확대를 촉구했다.</p>
+        <p class="rank-label">10</p>
+        <div class="source-card">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/black_maternal_health_morbidity_12172021_AP23193634509227-1.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Millions of Americans lack adequate access to prenatal care: Report</p>
+            <a class="link" href="https://thehill.com/policy/healthcare/6023785-march-dimes-maternity-deserts/" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
   </div>
 </body>

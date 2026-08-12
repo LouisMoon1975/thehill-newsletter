@@ -16,21 +16,19 @@ function buildHtml(items, pageUrl) {
   const rows = items
     .map(
       (item, i) => `
-      <div class="card-wrap">
-        <div class="rank-badge">${i + 1}</div>
-        <article class="item">
-          ${item.category ? `<span class="tag">${escapeHtml(item.category)}</span>` : ""}
-          <h2>${escapeHtml(item.title_ko)}</h2>
-          <p class="summary">${escapeHtml(item.summary_ko || item.description_ko || "")}</p>
-          <div class="source-card">
-            ${item.image ? `<img class="thumb" src="${item.image}" alt="" loading="lazy">` : ""}
-            <div class="source-text">
-              <p class="en-title">${escapeHtml(item.title_en || "")}</p>
-              <a class="link" href="${item.link}" target="_blank" rel="noopener">원문 기사 보기 →</a>
-            </div>
+      <article class="item">
+        ${item.category ? `<span class="tag">${escapeHtml(item.category)}</span>` : ""}
+        <h2>${escapeHtml(item.title_ko)}</h2>
+        <p class="summary">${escapeHtml(item.summary_ko || item.description_ko || "")}</p>
+        <p class="rank-label">${i + 1}</p>
+        <div class="source-card">
+          ${item.image ? `<img class="thumb" src="${item.image}" alt="" loading="lazy">` : ""}
+          <div class="source-text">
+            <p class="en-title">${escapeHtml(item.title_en || "")}</p>
+            <a class="link" href="${item.link}" target="_blank" rel="noopener">원문 기사 보기 →</a>
           </div>
-        </article>
-      </div>`
+        </div>
+      </article>`
     )
     .join("\n");
 
@@ -72,19 +70,21 @@ function buildHtml(items, pageUrl) {
 
   .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
 
-  .card-wrap { position: relative; margin-bottom: 26px; padding-top: 14px; }
-  .rank-badge { position: absolute; top: 0; left: 16px; z-index: 1; width: 28px; height: 28px; border-radius: 50%; background: #0e2148; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .item:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.15); }
   .item h2 {
-    font-size: 13.5px; margin: 0 0 4px; line-height: 1.3;
+    font-size: 13.5px; margin: 0 0 10px; line-height: 1.3;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
   .summary { flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
-  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; }
+  .rank-label { flex-shrink: 0; margin: 0 0 4px; color: #0e2148; font-weight: 700; font-size: 14px; }
+  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 260px; height: 84px; overflow: hidden; }
   .source-text { flex: 1; min-width: 0; }
-  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px; }
+  .en-title {
+    font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
   .thumb { width: 66px; height: 66px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
   .link { font-size: 13px; color: #3182f6; text-decoration: none; font-weight: 500; }
   @media (min-width: 641px) {
@@ -92,8 +92,7 @@ function buildHtml(items, pageUrl) {
   }
   @media (min-width: 900px) {
     .card-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 16px; }
-    .card-row .card-wrap { flex: 0 0 23%; margin-bottom: 0; scroll-snap-align: start; }
-    .card-row .item { min-height: 645px; }
+    .card-row .item { flex: 0 0 23%; min-height: 645px; margin-bottom: 0; scroll-snap-align: start; }
   }
 </style>
 </head>
