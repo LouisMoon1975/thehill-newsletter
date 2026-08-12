@@ -46,7 +46,10 @@
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
-  .summary { flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
+  .summary {
+    flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px;
+  }
   .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 100%; height: 84px; box-sizing: border-box; overflow: hidden; }
   .source-text { flex: 1; min-width: 0; }
   .en-title {
@@ -61,12 +64,20 @@
   @media (min-width: 900px) {
     .card-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(5, auto);
-      grid-auto-flow: column;
-      gap: 12px;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px;
     }
-    .card-row .item { margin-bottom: 0; }
+    .card-row .item { margin-bottom: 0; padding: 10px; }
+    .card-row .summary {
+      font-size: 11.5px; line-height: 1.4; margin-bottom: 6px;
+      display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-row .title-card { height: 48px; margin-bottom: 6px; }
+    .card-row .source-card { height: 60px; padding: 6px; gap: 6px; }
+    .card-row .thumb { width: 44px; height: 44px; }
+    .card-row .en-title { font-size: 10.5px; -webkit-line-clamp: 2; }
+    .card-row .link { font-size: 11px; }
   }
 </style>
 </head>
