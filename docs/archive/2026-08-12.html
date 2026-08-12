@@ -36,22 +36,28 @@
 
   .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
 
-  .item { position: relative; display: flex; gap: 12px; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-  .rank { font-weight: 700; color: #999; font-size: 18px; min-width: 24px; }
-  .body { flex: 1; min-width: 0; }
-  .body h2 { font-size: 17px; margin: 0 0 4px; line-height: 1.35; }
+  .card-wrap { position: relative; margin-bottom: 26px; padding-top: 14px; }
+  .rank-badge { position: absolute; top: 0; left: 16px; z-index: 1; width: 28px; height: 28px; border-radius: 50%; background: #0e2148; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+  .item { position: relative; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: box-shadow 0.25s ease; }
+  .item:hover { box-shadow: 0 0 0 4px rgba(43,79,216,0.18), 0 6px 24px rgba(43,79,216,0.35); }
+  .body h2 {
+    font-size: 15.3px; margin: 0 0 4px; line-height: 1.35;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
   .summary { font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
-  .source-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
-  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0; flex: 1; min-width: 0; }
-  .thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .source-card { display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; }
+  .source-text { flex: 1; min-width: 0; }
+  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px; }
+  .thumb { width: 66px; height: 66px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
   .link { font-size: 13px; color: #3182f6; text-decoration: none; font-weight: 500; }
   @media (min-width: 641px) {
     .summary { font-size: 13px; }
   }
   @media (min-width: 900px) {
     .card-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 16px; }
-    .card-row .item { flex: 0 0 23%; min-height: 430px; margin-bottom: 0; scroll-snap-align: start; }
+    .card-row .card-wrap { flex: 0 0 23%; margin-bottom: 0; scroll-snap-align: start; }
+    .card-row .item { min-height: 645px; }
   }
 </style>
 </head>
@@ -74,145 +80,165 @@
   <div class="content">
     <div class="card-row">
     
-      <article class="item">
-        <div class="rank">1</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">1</div>
+        <article class="item">
           <span class="tag">트럼프</span>
           <h2>연방판사, 트럼프 우편투표 제한 재차 저지</h2>
           <p class="summary">연방법원이 트럼프 대통령의 우편투표 제한 행정명령에 대해 미 우정공사(USPS)의 집행을 다시 금지했다. 인디라 탈와니 판사는 지난 6월에도 해당 명령이 유효하지 않다고 판결한 바 있으며, 이번 결정으로 우편투표 자격 요건을 주정부 명단 제출과 연계하려던 시도가 재차 좌절됐다. 행정부는 항소 여부를 검토 중인 것으로 알려졌다.</p>
-          <div class="source-row">
-            <p class="en-title">Federal judge reinforces block against Trump mail-in voting restrictions</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/AP26007110688760-e1783181616369_743d7f.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Federal judge reinforces block against Trump mail-in voting restrictions</p>
+              <a class="link" href="https://thehill.com/regulation/court-battles/6023907-judge-blocks-usps-trump-voter-order/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/regulation/court-battles/6023907-judge-blocks-usps-trump-voter-order/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">2</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">2</div>
+        <article class="item">
           <span class="tag">트럼프</span>
           <h2>트럼프 &quot;중간선거 비상사태 선포 가능성 열어둬&quot;</h2>
           <p class="summary">트럼프 대통령이 11월 중간선거를 앞두고 국가안보 비상사태를 선포해 연방정부가 선거를 통제할 가능성을 열어뒀다. 보수 논객 웨인 루트와의 인터뷰에서 나온 발언으로, 상원이 유권자 자격 검증법(SAVE법)을 통과시키지 않을 경우를 전제로 한 것이다. 이는 선거 관리 권한을 둘러싼 논란을 다시 촉발할 것으로 보인다.</p>
-          <div class="source-row">
-            <p class="en-title">Trump on declaring national security emergency for elections: &#39;Stranger things have happened&#39;</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26222723321656-e1786458254866.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Trump on declaring national security emergency for elections: &#39;Stranger things have happened&#39;</p>
+              <a class="link" href="https://thehill.com/homenews/administration/6023743-trump-national-emergency-midterms/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/homenews/administration/6023743-trump-national-emergency-midterms/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">3</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">3</div>
+        <article class="item">
           <span class="tag">트럼프</span>
           <h2>속보: 사우스캐롤라이나·위스콘신 등 경선일</h2>
           <p class="summary">위스콘신, 미네소타, 코네티컷, 버몬트에서 주목받는 경선이 열리고 앨라배마 하원 경선도 함께 치러졌다. 사우스캐롤라이나에서도 공화당이 고(故) 린지 그레이엄 상원의원의 후임을 뽑는 경선을 진행했으며, 10명의 후보가 각축을 벌였다.</p>
-          <div class="source-row">
-            <p class="en-title">Live updates: South Carolina, Wisconsin, more hold key primaries</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/WisconsinMinnesota_Mueller_AP_NamYHuh.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Live updates: South Carolina, Wisconsin, more hold key primaries</p>
+              <a class="link" href="https://thehill.com/homenews/administration/6021632-live-updates-trump-iran-primary-elections-south-carolina-wisconsin-minnesota/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/homenews/administration/6021632-live-updates-trump-iran-primary-elections-south-carolina-wisconsin-minnesota/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">4</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">4</div>
+        <article class="item">
           <span class="tag">트럼프</span>
           <h2>트럼프 정부, 미성년 트랜스젠더 의료 메디케이드 지원 제한</h2>
           <p class="summary">트럼프 행정부가 미성년자 대상 트랜스젠더 의료에 대한 연방 메디케이드 지원을 차단하는 최종 규칙을 발표했다. 메디케어·메디케이드서비스센터(CMS)는 미성년자를 위한 성전환 관련 시술에 아동건강보험프로그램(CHIP) 재원도 사용할 수 없도록 했다. 관련 단체들은 강하게 반발하며 소송을 예고했다.</p>
-          <div class="source-row">
-            <p class="en-title">Trump administration finalizes rule restricting trans healthcare for minors on Medicaid</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/Zoom-In-Oz_070826_AP_Mark-Schiefelbein.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Trump administration finalizes rule restricting trans healthcare for minors on Medicaid</p>
+              <a class="link" href="https://thehill.com/policy/healthcare/6023489-cms-blocks-minor-gender-care/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/policy/healthcare/6023489-cms-blocks-minor-gender-care/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">5</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">5</div>
+        <article class="item">
           <span class="tag">중간선거</span>
           <h2>카알, 앨라배마 하원 경선 승리...의회 복귀 유력</h2>
           <p class="summary">제리 카알 전 하원의원이 앨라배마 1선거구 공화당 후보 지명을 확정지으며 의회 복귀가 유력해졌다. 은퇴하는 배리 무어 의원의 지역구를 두고 다른 공화당 후보 3명을 물리쳤다. 카알은 2021년부터 2025년까지 해당 지역구를 대표한 바 있다.</p>
-          <div class="source-row">
-            <p class="en-title">Jerry Carl on track to return to Congress after Alabama House primary win for Moore seat</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2024/09/carljerry_092624gn01_w.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Jerry Carl on track to return to Congress after Alabama House primary win for Moore seat</p>
+              <a class="link" href="https://thehill.com/homenews/campaign/6006760-carl-alabama-house-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/homenews/campaign/6006760-carl-alabama-house-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">6</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">6</div>
+        <article class="item">
           <span class="tag">중간선거</span>
           <h2>사우스캐롤라이나 상원 경선, 결선투표로</h2>
           <p class="summary">고 린지 그레이엄 상원의원의 후임을 뽑는 공화당 경선이 8월 25일 결선투표로 이어진다. 달린 그레이엄 상원의원(그레이엄의 여동생)과 랠프 노먼 하원의원이 맞붙는다. 그레이엄 전 의원은 지난 7월 재임 중 갑작스럽게 별세했다.</p>
-          <div class="source-row">
-            <p class="en-title">Graham, Norman advance to runoff in South Carolina GOP primary for Senate</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/Norman_Graham_Split.png?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Graham, Norman advance to runoff in South Carolina GOP primary for Senate</p>
+              <a class="link" href="https://thehill.com/homenews/campaign/6022968-graham-norman-south-carolina-gop-senate-primary-runoff/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/homenews/campaign/6022968-graham-norman-south-carolina-gop-senate-primary-runoff/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">7</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">7</div>
+        <article class="item">
           <span class="tag">중간선거</span>
           <h2>라몬트, 코네티컷 주지사 경선서 진보 진영 눌러</h2>
           <p class="summary">네드 라몬트 코네티컷 주지사가 민주당 경선에서 진보 성향 도전자를 누르고 3선에 도전한다. 조시 엘리엇 주하원의원을 꺾고 본선에서 라이언 파지오 공화당 주상원의원과 맞붙게 됐다. 이번 경선은 50년 만에 처음 있는 현직 도전 사례로 주목받았다.</p>
-          <div class="source-row">
-            <p class="en-title">Lamont wards off progressive challenge to face Fazio in Connecticut governor&#39;s election</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26206677929229-e1786385164685.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Lamont wards off progressive challenge to face Fazio in Connecticut governor&#39;s election</p>
+              <a class="link" href="https://thehill.com/homenews/campaign/6020877-lamont-wins-connecticut-governor-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/homenews/campaign/6020877-lamont-wins-connecticut-governor-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">8</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">8</div>
+        <article class="item">
           <span class="tag">중간선거</span>
           <h2>달린 그레이엄, 혼전 속 공화 경선 선두</h2>
           <p class="summary">사우스캐롤라이나 유권자들이 고 린지 그레이엄 상원의원의 후임을 뽑는 특별경선에 나섰다. 그레이엄 의원의 여동생 달린 그레이엄이 혼전 속에서도 선두를 달리고 있다. 그는 지난 7월 오빠의 별세 이후 잔여임기를 채우기 위해 임명된 상태였다.</p>
-          <div class="source-row">
-            <p class="en-title">Live results: Darline Graham advances from crowded GOP field for late brother&#39;s Senate seat</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/AP26213705695335-e1785839936187.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Live results: Darline Graham advances from crowded GOP field for late brother&#39;s Senate seat</p>
+              <a class="link" href="https://thehill.com/homenews/campaign/6018905-live-results-south-carolina-senate-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/homenews/campaign/6018905-live-results-south-carolina-senate-primary/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">9</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">9</div>
+        <article class="item">
           
           <h2>국방부 &quot;예멘 공습으로 민간인 153명 사망&quot;</h2>
           <p class="summary">국방부가 지난해 예멘 후티 반군을 겨냥한 미군 공습으로 민간인 153명이 사망하고 243명이 부상했다고 의회에 보고했다. 홍해 상선 공격에 대응해 트럼프 대통령이 지난 3월 공습을 승인한 이후 나온 결과다. 인권단체들은 민간인 피해 규모에 우려를 표하고 있다.</p>
-          <div class="source-row">
-            <p class="en-title">Pentagon tells Congress US military airstrikes in Yemen resulted in 153 civilians killed</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/08/leading_pentagon_081526_ap_alex-brandon-e1786359419742.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Pentagon tells Congress US military airstrikes in Yemen resulted in 153 civilians killed</p>
+              <a class="link" href="https://thehill.com/policy/defense/6023883-pentagon-report-yemen-civilian-casualties/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/policy/defense/6023883-pentagon-report-yemen-civilian-casualties/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="item">
-        <div class="rank">10</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">10</div>
+        <article class="item">
           
           <h2>美 여성 580만명, 산전관리 사각지대 거주</h2>
           <p class="summary">마치오브다임스 보고서에 따르면 미국 여성 580만 명이 산전관리를 충분히 받을 수 없는 지역에 거주하고 있다. 전체 카운티의 3분의 1이 병원이나 분만센터가 없는 &#39;출산 사막&#39;으로 분류됐다. 프랭클린 루스벨트 전 대통령이 설립한 이 단체는 지역 간 의료 격차 해소를 촉구했다.</p>
-          <div class="source-row">
-            <p class="en-title">Millions of Americans lack adequate access to prenatal care: Report</p>
+          <div class="source-card">
             <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/07/black_maternal_health_morbidity_12172021_AP23193634509227-1.jpg?w=900" alt="" loading="lazy">
+            <div class="source-text">
+              <p class="en-title">Millions of Americans lack adequate access to prenatal care: Report</p>
+              <a class="link" href="https://thehill.com/policy/healthcare/6023785-march-dimes-maternity-deserts/" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="https://thehill.com/policy/healthcare/6023785-march-dimes-maternity-deserts/" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </div>
 </body>

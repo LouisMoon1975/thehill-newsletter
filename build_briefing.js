@@ -16,19 +16,21 @@ function buildHtml(items, pageUrl) {
   const rows = items
     .map(
       (item, i) => `
-      <article class="item">
-        <div class="rank">${i + 1}</div>
-        <div class="body">
+      <div class="card-wrap">
+        <div class="rank-badge">${i + 1}</div>
+        <article class="item">
           ${item.category ? `<span class="tag">${escapeHtml(item.category)}</span>` : ""}
           <h2>${escapeHtml(item.title_ko)}</h2>
           <p class="summary">${escapeHtml(item.summary_ko || item.description_ko || "")}</p>
-          <div class="source-row">
-            <p class="en-title">${escapeHtml(item.title_en || "")}</p>
+          <div class="source-card">
             ${item.image ? `<img class="thumb" src="${item.image}" alt="" loading="lazy">` : ""}
+            <div class="source-text">
+              <p class="en-title">${escapeHtml(item.title_en || "")}</p>
+              <a class="link" href="${item.link}" target="_blank" rel="noopener">원문 기사 보기 →</a>
+            </div>
           </div>
-          <a class="link" href="${item.link}" target="_blank" rel="noopener">원문 기사 보기 →</a>
-        </div>
-      </article>`
+        </article>
+      </div>`
     )
     .join("\n");
 
@@ -70,22 +72,28 @@ function buildHtml(items, pageUrl) {
 
   .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
 
-  .item { position: relative; display: flex; gap: 12px; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-  .rank { font-weight: 700; color: #999; font-size: 18px; min-width: 24px; }
-  .body { flex: 1; min-width: 0; }
-  .body h2 { font-size: 17px; margin: 0 0 4px; line-height: 1.35; }
+  .card-wrap { position: relative; margin-bottom: 26px; padding-top: 14px; }
+  .rank-badge { position: absolute; top: 0; left: 16px; z-index: 1; width: 28px; height: 28px; border-radius: 50%; background: #0e2148; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+  .item { position: relative; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: box-shadow 0.25s ease; }
+  .item:hover { box-shadow: 0 0 0 4px rgba(43,79,216,0.18), 0 6px 24px rgba(43,79,216,0.35); }
+  .body h2 {
+    font-size: 15.3px; margin: 0 0 4px; line-height: 1.35;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
   .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
   .summary { font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px; }
-  .source-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
-  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0; flex: 1; min-width: 0; }
-  .thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .source-card { display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; }
+  .source-text { flex: 1; min-width: 0; }
+  .en-title { font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px; }
+  .thumb { width: 66px; height: 66px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
   .link { font-size: 13px; color: #3182f6; text-decoration: none; font-weight: 500; }
   @media (min-width: 641px) {
     .summary { font-size: 13px; }
   }
   @media (min-width: 900px) {
     .card-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 16px; }
-    .card-row .item { flex: 0 0 23%; min-height: 430px; margin-bottom: 0; scroll-snap-align: start; }
+    .card-row .card-wrap { flex: 0 0 23%; margin-bottom: 0; scroll-snap-align: start; }
+    .card-row .item { min-height: 645px; }
   }
 </style>
 </head>
