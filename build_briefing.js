@@ -74,8 +74,8 @@ function buildHtml(items, pageUrl) {
 
   .card-wrap { position: relative; margin-bottom: 26px; padding-top: 14px; }
   .rank-badge { position: absolute; top: 0; left: 16px; z-index: 1; width: 28px; height: 28px; border-radius: 50%; background: #0e2148; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: box-shadow 0.25s ease; }
-  .item:hover { box-shadow: 0 0 0 4px rgba(43,79,216,0.18), 0 6px 24px rgba(43,79,216,0.35); }
+  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .item:hover { transform: translateY(-6px); box-shadow: 0 10px 24px rgba(0,0,0,0.15); }
   .item h2 {
     font-size: 13.5px; margin: 0 0 4px; line-height: 1.3;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
