@@ -106,12 +106,9 @@ function buildHtml(items, pageUrl) {
     .card-row .item {
       height: 367px; margin-bottom: 0; padding: 10px;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
     }
     .card-row .item:hover {
-      transform: perspective(800px) translateZ(10px) scale(1.032);
+      transform: translateY(-6px) scale(1.02);
       box-shadow: 0 10px 21px rgba(0,0,0,0.16);
       z-index: 2;
     }
