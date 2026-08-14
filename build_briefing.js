@@ -53,7 +53,8 @@ function buildHtml(items, pageUrl) {
   * { box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; margin: 0; background: linear-gradient(180deg, #f5f8fc 0%, #eef2f9 40%, #e3e9f5 100%); color: #1a1a1a; }
 
-  .topbar { position: relative; overflow: hidden; background: #0e2148; padding: 14px 16px; }
+  .topbar { position: relative; background: #0e2148; padding: 14px 16px; }
+  .topbar-bg-clip { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
   .topbar-bgimg { position: absolute; top: 0; height: 100%; object-fit: cover; opacity: 0.18; filter: grayscale(10%); transform: scale(1.7); }
   .topbar-bgimg:nth-child(1) { left: 2%; width: 18%; transform-origin: 30% center; }
   .topbar-bgimg:nth-child(2) { left: 41%; width: 18%; transform-origin: 50% 30%; }
@@ -66,8 +67,17 @@ function buildHtml(items, pageUrl) {
   .topbar-right { text-align: right; font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.6; }
   .topbar-right a { color: #fff; text-decoration: underline; }
   .topbar-right-group { display: flex; align-items: center; gap: 12px; }
+  .share-wrap { position: relative; flex-shrink: 0; }
   .share-btn { flex-shrink: 0; width: 52px; height: 52px; padding: 4px; box-sizing: border-box; border: none; border-radius: 8px; overflow: hidden; cursor: pointer; background: #9ca3af; }
   .share-btn img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; display: block; }
+  .share-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 30; background: #fff; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); padding: 6px; min-width: 160px; }
+  .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; border: none; background: none; padding: 9px 10px; border-radius: 6px; cursor: pointer; font-size: 13px; color: #1a1a1a; text-align: left; }
+  .share-menu button:hover { background: #f4f6fb; }
+  .share-menu .dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; }
+  .share-menu .dot.telegram { background: #29a9eb; }
+  .share-menu .dot.zalo { background: #0068ff; }
+  .share-menu .dot.copy { background: #6b7280; }
+  .share-menu .dot.native { background: #3182f6; }
   @media (min-width: 641px) {
     .topbar-left h1 { font-size: 25.3px; }
     .share-btn { width: 60px; height: 60px; }
@@ -130,9 +140,11 @@ function buildHtml(items, pageUrl) {
 </head>
 <body>
   <div class="topbar">
-    <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/White_House.jpg" alt="">
-    <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Capitol_west_front_edit2.jpg" alt="">
-    <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wall_Street_sign.jpg" alt="">
+    <div class="topbar-bg-clip">
+      <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/White_House.jpg" alt="">
+      <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Capitol_west_front_edit2.jpg" alt="">
+      <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wall_Street_sign.jpg" alt="">
+    </div>
     <div class="topbar-inner">
       <div class="topbar-left">
         <h1><span class="brand">The Hill.com</span> <span class="briefing">Briefing</span></h1>
@@ -143,9 +155,17 @@ function buildHtml(items, pageUrl) {
           <p>매일 아침 자동 업데이트 됩니다</p>
           <a href="archive/">지난 브리핑 보기</a>
         </div>
-        <button id="share-btn" class="share-btn" type="button" aria-label="이 페이지 공유하기" title="공유하기">
-          <img id="share-btn-img" src="${pageUrl}assets/share.gif" alt="공유">
-        </button>
+        <div class="share-wrap">
+          <button id="share-btn" class="share-btn" type="button" aria-label="이 페이지 공유하기" title="공유하기">
+            <img id="share-btn-img" src="${pageUrl}assets/share.gif" alt="공유">
+          </button>
+          <div id="share-menu" class="share-menu" hidden>
+            <button type="button" data-action="telegram"><span class="dot telegram">T</span>Telegram</button>
+            <button type="button" data-action="zalo"><span class="dot zalo">Z</span>Zalo</button>
+            <button type="button" data-action="copy"><span class="dot copy">🔗</span>링크 복사</button>
+            <button type="button" data-action="native"><span class="dot native">…</span>다른 방법으로 공유</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -173,17 +193,42 @@ function buildHtml(items, pageUrl) {
       btn.addEventListener('mouseenter', function () { img.src = gifSrc; });
       btn.addEventListener('mouseleave', function () { if (staticSrc) img.src = staticSrc; });
 
-      btn.addEventListener('click', function () {
-        var shareUrl = location.href;
-        var shareData = { title: document.title, url: shareUrl };
-        if (navigator.share) {
-          navigator.share(shareData).catch(function () {});
-        } else if (navigator.clipboard) {
-          navigator.clipboard.writeText(shareUrl).then(function () {
-            btn.title = '링크 복사됨!';
-            setTimeout(function () { btn.title = '공유하기'; }, 1500);
-          });
+      var menu = document.getElementById('share-menu');
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.hidden = !menu.hidden;
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menu.hidden && !menu.contains(e.target) && e.target !== btn) {
+          menu.hidden = true;
         }
+      });
+
+      menu.addEventListener('click', function (e) {
+        var actionBtn = e.target.closest('button[data-action]');
+        if (!actionBtn) return;
+        var shareUrl = location.href;
+        var action = actionBtn.getAttribute('data-action');
+
+        if (action === 'telegram') {
+          window.open('https://t.me/share/url?url=' + encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent(document.title), '_blank');
+        } else if (action === 'zalo') {
+          window.open('https://zalo.me/share?u=' + encodeURIComponent(shareUrl), '_blank');
+        } else if (action === 'copy') {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareUrl).then(function () {
+              actionBtn.lastChild.textContent = '복사됨!';
+              setTimeout(function () { actionBtn.lastChild.textContent = '링크 복사'; }, 1500);
+            });
+          }
+        } else if (action === 'native') {
+          if (navigator.share) {
+            navigator.share({ title: document.title, url: shareUrl }).catch(function () {});
+          }
+        }
+        menu.hidden = true;
       });
     })();
   </script>
