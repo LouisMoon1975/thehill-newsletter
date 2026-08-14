@@ -65,8 +65,12 @@ function buildHtml(items, pageUrl) {
   .topbar-left p { margin: 0; font-size: 14px; color: rgba(255,255,255,0.85); }
   .topbar-right { text-align: right; font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.6; }
   .topbar-right a { color: #fff; text-decoration: underline; }
+  .topbar-right-group { display: flex; align-items: center; gap: 12px; }
+  .share-btn { flex-shrink: 0; width: 52px; height: 52px; padding: 0; border: none; border-radius: 8px; overflow: hidden; cursor: pointer; background: rgba(255,255,255,0.12); }
+  .share-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
   @media (min-width: 641px) {
     .topbar-left h1 { font-size: 25.3px; }
+    .share-btn { width: 60px; height: 60px; }
   }
 
   .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
@@ -134,12 +138,55 @@ function buildHtml(items, pageUrl) {
         <h1><span class="brand">The Hill.com</span> <span class="briefing">Briefing</span></h1>
         <p>${dateFull} · thehill.com 요약</p>
       </div>
-      <div class="topbar-right">
-        <p>매일 아침 자동 업데이트 됩니다</p>
-        <a href="archive/">지난 브리핑 보기</a>
+      <div class="topbar-right-group">
+        <div class="topbar-right">
+          <p>매일 아침 자동 업데이트 됩니다</p>
+          <a href="archive/">지난 브리핑 보기</a>
+        </div>
+        <button id="share-btn" class="share-btn" type="button" aria-label="이 페이지 공유하기" title="공유하기">
+          <img id="share-btn-img" src="${pageUrl}assets/share.gif" alt="공유">
+        </button>
       </div>
     </div>
   </div>
+  <script>
+    (function () {
+      var btn = document.getElementById('share-btn');
+      var img = document.getElementById('share-btn-img');
+      var gifSrc = '${pageUrl}assets/share.gif';
+      var staticSrc = null;
+
+      var loader = new Image();
+      loader.crossOrigin = 'anonymous';
+      loader.onload = function () {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = loader.naturalWidth;
+          canvas.height = loader.naturalHeight;
+          canvas.getContext('2d').drawImage(loader, 0, 0);
+          staticSrc = canvas.toDataURL();
+          img.src = staticSrc;
+        } catch (e) {}
+      };
+      loader.src = gifSrc;
+
+      btn.addEventListener('mouseenter', function () { img.src = gifSrc; });
+      btn.addEventListener('mouseleave', function () { if (staticSrc) img.src = staticSrc; });
+
+      btn.addEventListener('click', function () {
+        var shareUrl = location.href;
+        var shareData = { title: document.title, url: shareUrl };
+        if (navigator.share) {
+          navigator.share(shareData).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(shareUrl).then(function () {
+            btn.title = '링크 복사됨!';
+            setTimeout(function () { btn.title = '공유하기'; }, 1500);
+          });
+        }
+      });
+    })();
+  </script>
   <div class="content">
     <div class="card-row">
     ${rows}
