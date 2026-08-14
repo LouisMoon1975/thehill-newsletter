@@ -162,6 +162,19 @@
 
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
+        var isMobile = window.matchMedia('(max-width: 640px)').matches;
+        if (isMobile) {
+          var shareUrl = location.href;
+          if (navigator.share) {
+            navigator.share({ title: document.title, url: shareUrl }).catch(function () {});
+          } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareUrl).then(function () {
+              btn.title = '링크 복사됨!';
+              setTimeout(function () { btn.title = '공유하기'; }, 1500);
+            });
+          }
+          return;
+        }
         menu.hidden = !menu.hidden;
       });
 
