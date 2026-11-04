@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11월 4일 The Hill Briefing</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="11월 4일 The Hill Briefing">
+<meta property="og:description" content="중간선거 투표 마감 초읽기 · 트럼프 주니어, 투표 호소 · 존 스튜어트, 트럼프 연못 발언 조롱">
+<meta property="og:url" content="https://louismoon1975.github.io/thehill-newsletter/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11월 4일 The Hill Briefing">
+<meta name="twitter:description" content="중간선거 투표 마감 초읽기 · 트럼프 주니어, 투표 호소 · 존 스튜어트, 트럼프 연못 발언 조롱">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; margin: 0; background: linear-gradient(180deg, #f5f8fc 0%, #eef2f9 40%, #e3e9f5 100%); color: #1a1a1a; }
+
+  .topbar { position: relative; background: #0e2148; padding: 14px 16px; }
+  .topbar-bg-clip { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+  .topbar-bgimg { position: absolute; top: 0; height: 100%; object-fit: cover; opacity: 0.18; filter: grayscale(10%); transform: scale(1.7); }
+  .topbar-bgimg:nth-child(1) { left: 2%; width: 18%; transform-origin: 30% center; }
+  .topbar-bgimg:nth-child(2) { left: 41%; width: 18%; transform-origin: 50% 30%; }
+  .topbar-bgimg:nth-child(3) { left: 80%; width: 18%; transform-origin: 50% center; }
+  .topbar-inner { position: relative; z-index: 1; max-width: 1600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .topbar-left h1 { font-size: 22px; margin: 0 0 4px; color: #fff; }
+  .topbar-left .brand { font-family: 'Roboto Slab', Georgia, serif; font-weight: 900; letter-spacing: -0.01em; }
+  .topbar-left .briefing { font-family: 'Ebrima', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 0.85em; }
+  .topbar-left p { margin: 0; font-size: 14px; color: rgba(255,255,255,0.85); }
+  .topbar-right { text-align: right; font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.6; }
+  .topbar-right a { color: #fff; text-decoration: underline; }
+  .topbar-right-group { display: flex; align-items: center; gap: 12px; }
+  .share-wrap { position: relative; flex-shrink: 0; }
+  .share-btn { flex-shrink: 0; width: 52px; height: 52px; padding: 4px; box-sizing: border-box; border: none; border-radius: 8px; overflow: hidden; cursor: pointer; background: #9ca3af; }
+  .share-btn img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; display: block; }
+  .share-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 30; background: #fff; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.2); padding: 6px; min-width: 160px; }
+  .share-menu button { display: flex; align-items: center; gap: 10px; width: 100%; border: none; background: none; padding: 9px 10px; border-radius: 6px; cursor: pointer; font-size: 13px; color: #1a1a1a; text-align: left; }
+  .share-menu button:hover { background: #f4f6fb; }
+  .share-menu .dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; }
+  .share-menu .dot.telegram { background: #29a9eb; }
+  .share-menu .dot.zalo { background: #0068ff; }
+  .share-menu .dot.copy { background: #6b7280; }
+  .share-menu .dot.native { background: #3182f6; }
+  @media (min-width: 641px) {
+    .topbar-left h1 { font-size: 25.3px; }
+    .share-btn { width: 60px; height: 60px; }
+  }
+
+  .content { max-width: 1600px; margin: 0 auto; padding: 24px 16px 60px; }
+  @media (min-width: 900px) {
+    .content { max-width: 100%; padding: 16px 12px 24px; }
+  }
+
+  .item { position: relative; display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: 6px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .title-card { flex-shrink: 0; width: 100%; height: 64px; box-sizing: border-box; background: #f4f6fb; border-radius: 6px; padding: 10px 12px; margin-bottom: 22px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .item h2 {
+    font-size: 13.5px; margin: 0; line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tag { display: block; font-size: 11px; font-weight: 700; color: #3182f6; margin-bottom: 4px; }
+  .summary {
+    flex: 1 1 auto; font-family: 'Ebrima', 'Nanum Gothic', -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14px; color: #333; line-height: 1.5; margin: 0 0 10px;
+  }
+  .source-card { flex-shrink: 0; display: flex; align-items: center; gap: 10px; background: #f4f6fb; border-radius: 6px; padding: 8px; width: 100%; height: 84px; box-sizing: border-box; overflow: hidden; text-decoration: none; color: inherit; cursor: pointer; }
+  .source-text { flex: 1; min-width: 0; }
+  .en-title {
+    font-size: 12px; color: #555; font-weight: 700; margin: 0 0 4px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .thumb { width: 66px; height: 66px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  .link { font-size: 13px; color: #3182f6; text-decoration: none; font-weight: 500; }
+  @media (min-width: 641px) {
+    .summary { font-size: 13px; }
+  }
+  @media (min-width: 900px) {
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px;
+    }
+    .card-row .item {
+      height: 367px; margin-bottom: 0; padding: 10px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-row .item:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 21px rgba(0,0,0,0.16);
+      z-index: 2;
+    }
+    .card-row .summary {
+      font-size: 12.5px; line-height: 1.4; margin-bottom: 6px;
+      display: -webkit-box; -webkit-line-clamp: 11; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-row .title-card { height: 56px; margin-bottom: 16px; }
+    .card-row .source-card { height: 60px; padding: 6px; gap: 6px; }
+    .card-row .thumb { width: 44px; height: 44px; }
+    .card-row .en-title { font-size: 10.5px; -webkit-line-clamp: 2; }
+    .card-row .link { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-bg-clip">
+      <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/White_House.jpg" alt="">
+      <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Capitol_west_front_edit2.jpg" alt="">
+      <img class="topbar-bgimg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wall_Street_sign.jpg" alt="">
+    </div>
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <h1><span class="brand">The Hill.com</span> <span class="briefing">Briefing</span></h1>
+        <p>2026년 11월 4일 · thehill.com 요약</p>
+      </div>
+      <div class="topbar-right-group">
+        <div class="topbar-right">
+          <p>매일 아침 자동 업데이트 됩니다</p>
+          <a href="archive/">지난 브리핑 보기</a>
+        </div>
+        <div class="share-wrap">
+          <button id="share-btn" class="share-btn" type="button" aria-label="이 페이지 공유하기" title="공유하기">
+            <img id="share-btn-img" src="https://louismoon1975.github.io/thehill-newsletter/assets/share.gif" alt="공유">
+          </button>
+          <div id="share-menu" class="share-menu" hidden>
+            <button type="button" data-action="telegram"><span class="dot telegram">T</span>Telegram</button>
+            <button type="button" data-action="zalo"><span class="dot zalo">Z</span>Zalo</button>
+            <button type="button" data-action="copy"><span class="dot copy">🔗</span>링크 복사</button>
+            <button type="button" data-action="native"><span class="dot native">…</span>다른 방법으로 공유</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var btn = document.getElementById('share-btn');
+      var img = document.getElementById('share-btn-img');
+      var gifSrc = 'https://louismoon1975.github.io/thehill-newsletter/assets/share.gif';
+      var staticSrc = null;
+
+      var loader = new Image();
+      loader.crossOrigin = 'anonymous';
+      loader.onload = function () {
+        try {
+          var canvas = document.createElement('canvas');
+          canvas.width = loader.naturalWidth;
+          canvas.height = loader.naturalHeight;
+          canvas.getContext('2d').drawImage(loader, 0, 0);
+          staticSrc = canvas.toDataURL();
+          img.src = staticSrc;
+        } catch (e) {}
+      };
+      loader.src = gifSrc;
+
+      btn.addEventListener('mouseenter', function () { img.src = gifSrc; });
+      btn.addEventListener('mouseleave', function () { if (staticSrc) img.src = staticSrc; });
+
+      var menu = document.getElementById('share-menu');
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isMobile = window.matchMedia('(max-width: 640px)').matches;
+        if (isMobile) {
+          var shareUrl = location.href;
+          if (navigator.share) {
+            navigator.share({ title: document.title, url: shareUrl }).catch(function () {});
+          } else if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareUrl).then(function () {
+              btn.title = '링크 복사됨!';
+              setTimeout(function () { btn.title = '공유하기'; }, 1500);
+            });
+          }
+          return;
+        }
+        menu.hidden = !menu.hidden;
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!menu.hidden && !menu.contains(e.target) && e.target !== btn) {
+          menu.hidden = true;
+        }
+      });
+
+      menu.addEventListener('click', function (e) {
+        var actionBtn = e.target.closest('button[data-action]');
+        if (!actionBtn) return;
+        var shareUrl = location.href;
+        var action = actionBtn.getAttribute('data-action');
+
+        if (action === 'telegram') {
+          window.open('https://t.me/share/url?url=' + encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent(document.title), '_blank');
+        } else if (action === 'zalo') {
+          window.open('https://zalo.me/share?u=' + encodeURIComponent(shareUrl), '_blank');
+        } else if (action === 'copy') {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareUrl).then(function () {
+              actionBtn.lastChild.textContent = '복사됨!';
+              setTimeout(function () { actionBtn.lastChild.textContent = '링크 복사'; }, 1500);
+            });
+          }
+        } else if (action === 'native') {
+          if (navigator.share) {
+            navigator.share({ title: document.title, url: shareUrl }).catch(function () {});
+          }
+        }
+        menu.hidden = true;
+      });
+    })();
+  </script>
+  <div class="content">
+    <div class="card-row">
+    
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">트럼프</span>
+          <h2>중간선거 투표 마감 초읽기</h2>
+        </div>
+        <p class="summary">2026년 중간선거 투표일이 마무리 국면에 들어갔다. 트럼프 대통령의 정치적 명운이 이번 선거 결과에 걸려 있다는 평가가 나온다. 민주당은 &#39;블루웨이브&#39;를 기대하고 있으며, 공화당은 하원과 상원 다수당 지위를 지키기 위해 총력을 기울이고 있다. 트럼프 대통령은 최근 몇 달간 28차례의 현장 유세와 다수의 전화 유세를 진행하며 오하이오, 텍사스 등 주요 경합주를 누볐다. 투표 마감이 다가오면서 양당 모두 결과에 촉각을 곤두세우고 있다. 이번 선거 결과는 향후 트럼프 행정부의 입법 추진력에도 큰 영향을 미칠 전망이다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/campaign/6190941-live-updates-trump-midterm-elections-2026/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/11/ballotcounting_11032026ap.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Live updates: Midterms in full swing in final hours before polls close</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">트럼프</span>
+          <h2>트럼프 주니어, 투표 호소</h2>
+        </div>
+        <p class="summary">도널드 트럼프 주니어가 선거일 투표를 독려하기 위해 지난해 암살된 보수 활동가 찰리 커크를 소환했다. 그는 화요일 SNS에 커크가 유타밸리대 행사에서 연설하는 사진을 올리며 투표 전 반드시 투표소에 들러달라고 촉구했다. 커크는 2025년 암살돼 보수 진영에서 상징적 인물로 떠올랐다. 트럼프 주니어의 게시물은 선거일 막판 보수층 결집을 겨냥한 메시지로 해석된다. 이번 호소는 공화당이 중간선거에서 하원·상원 다수를 지키기 위한 총력전의 일환으로 풀이된다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/campaign/6193721-trump-jr-charlie-kirk-vote/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/11/AP25264771517668-e1793738129906.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Trump Jr. invokes Charlie Kirk assassination in last-minute plea to voters</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">트럼프</span>
+          <h2>존 스튜어트, 트럼프 연못 발언 조롱</h2>
+        </div>
+        <p class="summary">코미디언 존 스튜어트가 &#39;데일리쇼&#39;에서 트럼프 대통령이 중간선거 직전 마지막 연설 중 상당 시간을 링컨 기념관 리플렉팅 풀 보수 공사에 대해 이야기한 것을 조롱했다. 트럼프는 수백만 달러가 투입된 논란의 연못 리노베이션을 자랑하며 &#39;깨끗하게 청소했다&#39;고 발언했다. 스튜어트는 선거를 앞둔 민감한 시점에 엉뚱한 주제에 집중한 트럼프를 비꼬았다. 해당 발언은 보수·진보 양쪽에서 화제가 되며 소셜미디어에서 널리 공유됐다. 이는 공화당 내부에서도 선거 막판 메시지 전략에 대한 우려로 이어지고 있다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/media/6193762-trump-lincoln-memorial-speech/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/10/stewartjon_thedailyshow_07272026getty.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Jon Stewart mocks Trump&#39;s &#39;I had it cleaned&#39; speech at Reflecting Pool</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">트럼프</span>
+          <h2>공화당, 참패 우려 속 트럼프 딴소리</h2>
+        </div>
+        <p class="summary">공화당이 이번 중간선거에서 하원과 상원 모두를 잃을 수 있다는 우려가 커지는 가운데, 트럼프 대통령은 리플렉팅 풀의 조류 문제를 언급하는 등 민생과 거리가 먼 발언을 이어갔다. 평론가들은 리플렉팅 풀 보수 문제가 미시간, 텍사스, 알래스카 등 경합주 유권자들의 실제 관심사와는 거리가 멀다고 지적한다. 공화당 내부에서는 물가와 생활비 문제에 집중하지 못한 선거 전략에 대한 비판이 나온다. 이는 공화당의 의회 다수당 수성에 부정적 영향을 줄 수 있다는 분석이다. 선거 결과에 따라 트럼프 행정부의 국정 운영 방향도 크게 달라질 전망이다.</p>
+        <a class="source-card" href="https://thehill.com/opinion/robbys-radar/6193430-gop-vulnerable-house-senate/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/11/A-block-thumb-11326_A.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">GOP braces for midterms wipeout as Trump rants about Reflecting Pool algae?</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">중간선거</span>
+          <h2>디샌티스, 이란전 공화당에 악재</h2>
+        </div>
+        <p class="summary">플로리다 주지사 론 디샌티스가 이란과의 전쟁이 이번 중간선거에서 공화당에 &#39;큰, 큰 걸림돌&#39;이 되고 있다고 밝혔다. 그는 한 라디오 인터뷰에서 이란전이 유가 상승을 초래해 공화당 후보들에게 악영향을 끼쳤다고 말했다. 디샌티스는 전직 대선 주자로서 공화당 선거 전략에 대한 우려를 공개적으로 드러냈다. 고유가와 생활비 부담은 이번 선거에서 유권자들의 핵심 관심사로 꼽힌다. 그의 발언은 공화당 내부에서 대외정책과 경제 이슈 간 연결고리에 대한 논쟁을 다시 부추기고 있다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/campaign/6193617-desantis-iran-war-gop-midterms/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/11/AP26296654894650-e1793735370155.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">DeSantis: War in Iran &#39;big, big drag&#39; on Republicans</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">중간선거</span>
+          <h2>역대 중간선거와 인플레 비교</h2>
+        </div>
+        <p class="summary">더힐의 경제 뉴스레터는 이번 중간선거에서 인플레이션이 유권자 표심에 미치는 영향을 과거 선거 사이클과 비교해 분석했다. 미국인들은 최근 수년간 높은 물가에 시달려 왔으며, 이는 생활비 문제로 직결된다. 과거 중간선거 사례를 보면 인플레이션이 집권당에 불리하게 작용한 경우가 많았다. 이번에도 유가와 생활 물가가 유권자들의 투표 결정에 핵심 변수로 작용할 것으로 분석된다. 전문가들은 경제 지표가 이번 선거의 최종 결과를 가를 중요한 요인이 될 것으로 전망한다.</p>
+        <a class="source-card" href="https://thehill.com/newsletters/business-economy/6194251-how-does-inflation-compare-to-past-midterm-cycles/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/10/gas_prices_md_100626gn07_w.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">How does inflation compare to past midterm cycles?</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">중간선거</span>
+          <h2>아이오와 민주 후보, 교차투표 인정</h2>
+        </div>
+        <p class="summary">아이오와주 상원의원 후보인 민주당 소속 조시 투렉 주 하원의원이 화요일 투표에서 공화당 후보 3명에게 표를 던졌다고 밝혔다. 그는 포타와타미 카운티 감독관과 재무관 선거에서 공화당 후보를 지지했다고 설명했다. 투렉은 민주당 일괄 투표 여부를 묻는 질문에 교차투표 사실을 인정했다. 그는 현재 아이오와 상원 의석을 두고 치열한 경쟁을 벌이고 있다. 이번 발언은 선거 막판 유권자들의 투표 성향 변화를 보여주는 사례로 주목받고 있다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/6194223-iowa-senate-josh-turek-ticket-splitting/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/06/Iowa_Fortinsky_AP_Bryon-Houlgrave.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Democratic Iowa Senate candidate says he split his ticket</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">중간선거</span>
+          <h2>크로켓, 스티븐스 지지철회 재평가</h2>
+        </div>
+        <p class="summary">재스민 크로켓 하원의원(민주·텍사스)이 헤일리 스티븐스 하원의원의 막판 지지 철회가 오히려 민주당 상원 후보 압둘 엘사예드에게 &#39;도움이 됐다&#39;고 평가했다. 스티븐스는 선거 직전 공화당 후보 마이크 로저스 전 하원의원 지지를 선언해 논란을 일으켰다. 크로켓은 &#39;더 브렉퍼스트 클럽&#39; 방송에 출연해 이 사건이 민주당 지지층, 특히 흑인 유권자들을 엘사예드 쪽으로 결집시켰다고 주장했다. 이는 미시간 상원 선거에서 막판 변수로 떠올랐다. 민주당 내부에서도 이번 사태를 둘러싼 해석이 엇갈리고 있다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/campaign/6194159-crockett-says-stevens-boosted-el-sayed/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/03/AP26063132565668-e1772636806486.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Crockett: Stevens did El-Sayed &#39;a favor&#39; among Black voters</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          
+          <h2>공화당, 심리학회 반유대 의혹 제기</h2>
+        </div>
+        <p class="summary">하원 교육·노동위원회 소속 공화당 의원들이 미국심리학회(APA)가 반유대주의를 묵인했다며 22쪽 분량의 보고서를 발표했다. 보고서는 2023년 10월 하마스의 이스라엘 공격 이후 APA 내부 커뮤니케이션과 공개 리스트서브를 조사한 내용을 담고 있다. 공화당 의원들은 APA 지도부가 반유대 불만을 축소하거나 방치했다고 주장했다. 이들은 필요시 APA의 인증 자격을 박탈할 수 있다고 경고했다. APA 측의 공식 반응은 아직 알려지지 않았다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/house/6194215-republicans-accuse-apa-antisemitism/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/05/walbergtim_051326gn01_w.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">House Republicans accuse the American Psychological Association of antisemitism, threaten accreditation</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="item">
+        <div class="title-card">
+          <span class="tag">중간선거</span>
+          <h2>워녁, 2028 대선 불투명 경고</h2>
+        </div>
+        <p class="summary">라파엘 워녁 상원의원(민주·조지아)이 민주당이 이번 중간선거에서 승리하지 못하면 &#39;2028년이 이론적인 것이 될 수 있다&#39;고 경고했다. 그는 정치매체 폴리티코와의 인터뷰에서 공화당의 공세와 선거 결과를 둘러싼 법적 다툼 가능성을 언급했다. 워녁은 현재로서는 중간선거 승리에 집중하고 있다고 강조했다. 그의 발언은 이번 선거가 단순한 정권 견제를 넘어 민주주의 체제 자체에 영향을 줄 수 있다는 우려를 반영한다. 민주당 지지자들 사이에서도 선거 결과에 대한 긴장감이 높아지고 있다.</p>
+        <a class="source-card" href="https://thehill.com/homenews/senate/6194191-warnock-democrats-midterm-risks/" target="_blank" rel="noopener">
+          <img class="thumb" src="https://thehill.com/wp-content/uploads/sites/2/2026/04/warnockraphael_042926gn05_w.jpg?w=900" alt="" loading="lazy">
+          <div class="source-text">
+            <p class="en-title">Warnock: &#39;2028 could very well be theoretical&#39; if Democrats don&#39;t win midterms</p>
+            <span class="link">원문 기사 보기 →</span>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
